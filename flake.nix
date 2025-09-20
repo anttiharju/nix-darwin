@@ -42,7 +42,7 @@
       # Enable alternative shell support in nix-darwin.
       programs.fish = {
         enable = true;
-        interactiveShellInit = (builtins.readFile ./dotfiles/.config/config.fish);
+        interactiveShellInit = (builtins.readFile ./dotfiles/config.fish);
       };
 
       # Set Git commit hash for darwin-version.
