@@ -1,2 +1,7 @@
 # nix-darwin
-My nix-darwin configuration
+
+My MacBook Pro config
+
+```sh
+sudo darwin-rebuild switch
+```
