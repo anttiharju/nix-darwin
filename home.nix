@@ -8,6 +8,11 @@
       ".aerospace.toml" = { source = ./dotfiles/.aerospace.toml; };
       ".gitignore" = { source = ./dotfiles/.global.gitignore; };
       ".gitconfig" = { source = ./dotfiles/.gitconfig; };
+      ".local/bin" = {
+        source = ./utils;
+        recursive = true;
+        executable = true;
+      };
     };
     packages = [
       pkgs.vim

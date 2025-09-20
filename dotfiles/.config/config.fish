@@ -1,3 +1,6 @@
+# Extend path
+set -gx PATH ~/.local/bin $PATH
+
 # This is slow, hence the if condition.
 if not ssh-add -l >/dev/null 2>&1
   ssh-add --apple-load-keychain 2> /dev/null
