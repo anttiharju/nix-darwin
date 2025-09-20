@@ -40,7 +40,12 @@
       };
 
       # Enable alternative shell support in nix-darwin.
-      programs.fish.enable = true;
+      programs.fish = {
+        enable = true;
+        interactiveShellInit = ''
+          set fish_greeting # Disable greeting
+        '';
+      };
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
