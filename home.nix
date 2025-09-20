@@ -4,10 +4,10 @@
     homeDirectory = "/Users/antti";
     stateVersion = "25.05";
     file = {
-      ".hushlogin" = { source = ./dotfiles/.hushlogin; };
-      ".aerospace.toml" = { source = ./dotfiles/.aerospace.toml; };
-      ".gitignore" = { source = ./dotfiles/.global.gitignore; };
-      ".gitconfig" = { source = ./dotfiles/.gitconfig; };
+      ".hushlogin" = { source = ./dotfiles/hushlogin; };
+      ".aerospace.toml" = { source = ./dotfiles/aerospace.toml; };
+      ".gitignore" = { source = ./dotfiles/gitignore; };
+      ".gitconfig" = { source = ./dotfiles/gitconfig; };
       ".local/bin" = {
         source = ./utils;
         recursive = true;
