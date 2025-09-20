@@ -1,0 +1,23 @@
+[user]
+    name = anttiharju
+    email = antti@harju.io
+    signingkey = /Users/antti/.ssh/keys/github-sign
+[push]
+    autoSetupRemote = true
+[gpg]
+    format = ssh
+[commit]
+    gpgsign = true
+[gpg "ssh"]
+    allowedSignersFile = /Users/antti/.ssh/keys/github-sign.pub
+[init]
+    defaultBranch = main
+[branch "master"]
+    pushRemote = no_push
+    # disable per repo with
+    # git config --local branch.master.pushRemote origin
+[branch "main"]
+    pushRemote = no_push
+    # disable per repo with
+    # git config --local branch.main.pushRemote origin
+
