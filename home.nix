@@ -8,6 +8,7 @@
       ".aerospace.toml" = { source = ./dotfiles/aerospace.toml; };
       ".gitignore" = { source = ./dotfiles/gitignore; };
       ".gitconfig" = { source = ./dotfiles/gitconfig; };
+      ".config/ghostty/config" = { source = ./dotfiles/ghostty; };
       ".local/bin" = {
         source = ./utils;
         recursive = true;
