@@ -23,6 +23,9 @@
       system.primaryUser = "antti";
       homebrew = {
         enable = true;
+        masApps = {
+          "Strongbox Pro" = 1481853033;
+        };
       };
 
       # Enable alternative shell support in nix-darwin.
