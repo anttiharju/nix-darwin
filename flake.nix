@@ -13,14 +13,16 @@
   let
     configuration = { pkgs, lib, ... }: {
       environment.systemPackages = [ pkgs.fish ];
+      programs.fish = {
+        enable = true;
+        interactiveShellInit = (builtins.readFile ./dotfiles/config.fish);
+      };
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
-
-      # Not everything can be installed through nix.
-      system.primaryUser = "antti";
       system.defaults.dock.autohide = true;
 
+      # Not everything can be installed through nix.
       homebrew = {
         enable = true;
         masApps = {
@@ -32,19 +34,13 @@
         ];
       };
 
-      # Enable alternative shell support in nix-darwin.
-      programs.fish = {
-        enable = true;
-        interactiveShellInit = (builtins.readFile ./dotfiles/config.fish);
-      };
-
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
-
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
 
+      system.primaryUser = "antti";
       users.knownUsers = [ "antti" ];
       users.users.antti = {
         name = "antti";
@@ -60,8 +56,6 @@
     };
   in
   {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#harju
     darwinConfigurations."harju" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
@@ -70,8 +64,6 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.antti = ./home.nix;
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
         }
       ];
     };
