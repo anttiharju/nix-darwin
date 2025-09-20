@@ -16,6 +16,7 @@
         [
           pkgs.vim
           pkgs.git
+          pkgs.bat
         ];
 
       # Necessary for using flakes on this system.
