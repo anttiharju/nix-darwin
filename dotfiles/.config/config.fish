@@ -7,5 +7,6 @@ end
 set fish_greeting
 
 # Abbreviations.
-abbr -a "s" "sudo"
-abbr -a "ds" "sudo darwin-rebuild switch"
+abbr -a 's' 'sudo'
+abbr -a 'ds' 'sudo darwin-rebuild switch'
+abbr -a 'shebang' 'printf "#!/usr/bin/env bash" | pbcopy'
