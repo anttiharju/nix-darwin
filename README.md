@@ -1,7 +1,3 @@
 # nix-darwin
 
-My MacBook Pro config
-
-```sh
-sudo darwin-rebuild switch
-```
+Antti's MacBook Pro config
