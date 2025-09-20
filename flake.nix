@@ -20,6 +20,10 @@
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
+      system.primaryUser = "antti";
+      homebrew = {
+        enable = true;
+      };
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
