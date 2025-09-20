@@ -10,3 +10,4 @@ set fish_greeting
 abbr -a 's' 'sudo'
 abbr -a 'ds' 'sudo darwin-rebuild switch'
 abbr -a 'shebang' 'printf "#!/usr/bin/env bash" | pbcopy'
+abbr -a 'prune-branches' 'git branch | grep -v "\*\\|  main\$\\|  master\$" | xargs git branch -D'
