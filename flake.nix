@@ -2,47 +2,44 @@
   description = "Example nix-darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs }:
-    let
-      configuration = { pkgs, lib, ... }: {
-        # Allow only google-chrome as unfree package
-        nixpkgs.config.allowUnfreePredicate = pkg:
-          builtins.elem (lib.getName pkg) [ "google-chrome" ];
-
-        # List packages installed in system profile.
-        environment.systemPackages = [
+  let
+    configuration = { pkgs, ... }: {
+      # List packages installed in system profile. To search by name, run:
+      # $ nix-env -qaP | grep wget
+      environment.systemPackages =
+        [
           pkgs.vim
-          pkgs.fish
-          pkgs.keepassxc
-          pkgs.google-chrome
-          pkgs.bat
           pkgs.git
         ];
 
-        # Necessary for using flakes on this system.
-        nix.settings.experimental-features = "nix-command flakes";
+      # Necessary for using flakes on this system.
+      nix.settings.experimental-features = "nix-command flakes";
 
-        # Set Git commit hash for darwin-version.
-        system.configurationRevision = self.rev or self.dirtyRev or null;
+      # Enable alternative shell support in nix-darwin.
+      # programs.fish.enable = true;
 
-        # Used for backwards compatibility, please read the changelog before changing.
-        system.stateVersion = 6;
+      # Set Git commit hash for darwin-version.
+      system.configurationRevision = self.rev or self.dirtyRev or null;
 
-        # The platform the configuration will be used on.
-        nixpkgs.hostPlatform = "aarch64-darwin";
-      };
-    in
-    {
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#MacBook-Pro-van-Antti
-      darwinConfigurations."MacBook-Pro-van-Antti" = nix-darwin.lib.darwinSystem {
-        modules = [ configuration ];
-      };
+      # Used for backwards compatibility, please read the changelog before changing.
+      # $ darwin-rebuild changelog
+      system.stateVersion = 6;
+
+      # The platform the configuration will be used on.
+      nixpkgs.hostPlatform = "aarch64-darwin";
     };
+  in
+  {
+    # Build darwin flake using:
+    # $ darwin-rebuild build --flake .#harju
+    darwinConfigurations."harju" = nix-darwin.lib.darwinSystem {
+      modules = [ configuration ];
+    };
+  };
 }
-
