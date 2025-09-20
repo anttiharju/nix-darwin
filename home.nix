@@ -1,9 +1,13 @@
 { config, pkgs, ... }: {
-  home.username = "antti";
-  home.homeDirectory = "/Users/antti";
-  home.stateVersion = "25.05";
-  home.file.".hushlogin" = {
-    source = ./.hushlogin;
+  home = {
+    username = "antti";
+    homeDirectory = "/Users/antti";
+    stateVersion = "25.05";
+    file.".hushlogin" = {
+      source = ./.hushlogin;
+    };
   };
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+  };
 }
