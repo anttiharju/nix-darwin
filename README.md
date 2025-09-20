@@ -1,3 +1,3 @@
 # nix-darwin
 
-Antti's MacBook Pro config
+Antti's MacBook Pro config and utilities
