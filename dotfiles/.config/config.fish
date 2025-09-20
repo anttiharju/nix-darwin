@@ -6,6 +6,9 @@ end
 # Disable greeting.
 set fish_greeting
 
+# Aliases
+alias "cat=bat --plain"
+
 # Abbreviations.
 abbr -a 's' 'sudo'
 abbr -a 'ds' 'sudo darwin-rebuild switch'
