@@ -20,6 +20,8 @@
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
+
+      # Not everything can be installed through nix.
       system.primaryUser = "antti";
       homebrew = {
         enable = true;
