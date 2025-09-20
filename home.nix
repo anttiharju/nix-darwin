@@ -4,11 +4,11 @@
     homeDirectory = "/Users/antti";
     stateVersion = "25.05";
     file = {
-      ".hushlogin" = { source = ./dotfiles/hushlogin; };
+      ".config/ghostty/config" = { source = ./dotfiles/ghostty; };
       ".aerospace.toml" = { source = ./dotfiles/aerospace.toml; };
       ".gitignore" = { source = ./dotfiles/gitignore; };
       ".gitconfig" = { source = ./dotfiles/gitconfig; };
-      ".config/ghostty/config" = { source = ./dotfiles/ghostty; };
+      ".hushlogin" = { source = ./dotfiles/hushlogin; };
       ".local/bin" = {
         source = ./utils;
         recursive = true;
@@ -16,13 +16,13 @@
       };
     };
     packages = [
-      pkgs.vim
-      pkgs.git
-      pkgs.bat
       pkgs.aerospace
-      pkgs.gh
-      pkgs.tree
       pkgs.vscode
+      pkgs.tree
+      pkgs.bat
+      pkgs.git
+      pkgs.vim
+      pkgs.gh
     ];
   };
   programs = {
