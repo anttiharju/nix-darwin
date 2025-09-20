@@ -13,6 +13,7 @@
       enable = true;
       extraConfig = {
         push = { autoSetupRemote = true; };
+        core = { editor = "vim"; };
       };
       userEmail = "antti@harju.io";
       userName = "anttiharju";
