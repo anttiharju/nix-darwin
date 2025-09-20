@@ -21,6 +21,7 @@
           pkgs.vim
           pkgs.git
           pkgs.bat
+          pkgs.fish
         ];
 
       # Necessary for using flakes on this system.
