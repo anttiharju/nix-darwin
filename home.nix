@@ -13,7 +13,10 @@
       enable = true;
       extraConfig = {
         push = { autoSetupRemote = true; };
-        core = { editor = "vim"; };
+        core = {
+          editor = "vim";
+          sshCommand = "ssh -F ~/.ssh/config";
+        };
       };
       userEmail = "antti@harju.io";
       userName = "anttiharju";
