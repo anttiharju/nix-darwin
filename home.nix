@@ -9,5 +9,10 @@
   };
   programs = {
     home-manager.enable = true;
+    git = {
+      enable = true;
+      userEmail = "antti@harju.io";
+      userName = "anttiharju";
+    };
   };
 }
