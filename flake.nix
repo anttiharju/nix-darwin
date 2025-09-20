@@ -54,7 +54,9 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#harju
     darwinConfigurations."harju" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      modules = [
+        configuration
+      ];
     };
   };
 }
