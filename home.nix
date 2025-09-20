@@ -10,6 +10,9 @@
       ".aerospace.toml" = {
         source = ./.aerospace.toml;
       };
+      ".gitignore" = {
+        source = ./.global.gitignore;
+      };
     };
     packages = [
       pkgs.aerospace
@@ -24,6 +27,7 @@
         core = {
           editor = "vim";
           sshCommand = "ssh -F ~/.ssh/config";
+          excludesFile = "~/.gitignore";
         };
       };
       userEmail = "antti@harju.io";
