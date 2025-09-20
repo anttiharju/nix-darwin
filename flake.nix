@@ -22,6 +22,7 @@
           pkgs.git
           pkgs.bat
           pkgs.fish
+          pkgs.gh
         ];
 
       # Necessary for using flakes on this system.
