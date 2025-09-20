@@ -13,6 +13,9 @@
       ".gitignore" = {
         source = ./.global.gitignore;
       };
+      ".gitconfig" = {
+        source = ./.gitconfig;
+      };
     };
     packages = [
       pkgs.aerospace
@@ -22,16 +25,7 @@
     home-manager.enable = true;
     git = {
       enable = true;
-      extraConfig = {
-        push = { autoSetupRemote = true; };
-        core = {
-          editor = "vim";
-          sshCommand = "ssh -F ~/.ssh/config";
-          excludesFile = "~/.gitignore";
-        };
-      };
-      userEmail = "antti@harju.io";
-      userName = "anttiharju";
+      includes = [ { path = "~/.gitconfig"; } ];
     };
   };
 }
