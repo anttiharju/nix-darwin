@@ -1,0 +1,81 @@
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+[mode.main.binding]
+cmd-h = []     # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
+
+alt-f = 'fullscreen'
+
+alt-w = 'move up'
+alt-a = 'move left'
+alt-s = 'move down'
+alt-d = 'move right'
+
+alt-shift-w = 'focus --boundaries-action wrap-around-the-workspace up'
+alt-shift-a = 'focus --boundaries-action wrap-around-the-workspace left'
+alt-shift-s = 'focus --boundaries-action wrap-around-the-workspace down'
+alt-shift-d = 'focus --boundaries-action wrap-around-the-workspace right'
+
+# cmd because need alt-4 for $
+cmd-alt-1 = 'workspace 1'
+cmd-alt-2 = 'workspace 2'
+cmd-alt-3 = 'workspace 3'
+cmd-alt-4 = 'workspace 4'
+cmd-alt-5 = 'workspace 5'
+cmd-alt-6 = 'workspace 6'
+cmd-alt-7 = 'workspace 7'
+cmd-alt-8 = 'workspace 8'
+cmd-alt-9 = 'workspace 9'
+cmd-alt-0 = 'workspace 10'
+
+# Difficult to press but don't need that often
+# alt-shift-7 must remain free to produce \
+cmd-alt-shift-1 = 'move-node-to-workspace 1'
+cmd-alt-shift-2 = 'move-node-to-workspace 2'
+cmd-alt-shift-3 = 'move-node-to-workspace 3'
+cmd-alt-shift-4 = 'move-node-to-workspace 4'
+cmd-alt-shift-5 = 'move-node-to-workspace 5'
+cmd-alt-shift-6 = 'move-node-to-workspace 6'
+cmd-alt-shift-7 = 'move-node-to-workspace 7'
+cmd-alt-shift-8 = 'move-node-to-workspace 8'
+cmd-alt-shift-9 = 'move-node-to-workspace 9'
+cmd-alt-shift-0 = 'move-node-to-workspace 10'
+
+# Automatically assign apps to workspaces
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = ['move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.TextEdit'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'com.markmcguill.strongbox.pro'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = ['move-node-to-workspace 6']
+
+[[on-window-detected]]
+if.app-id = 'dev.kdrag0n.MacVirt'  # OrbStack
+run = ['move-node-to-workspace 6']
