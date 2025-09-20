@@ -1,6 +1,5 @@
 {
   description = "Example nix-darwin system flake";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
@@ -10,10 +9,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
-    configuration = { pkgs, ... }: {
+    configuration = { pkgs, lib, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [ pkgs.fish ];
@@ -24,6 +22,12 @@
       # Not everything can be installed through nix.
       system.primaryUser = "antti";
       system.defaults.dock.autohide = true;
+
+      # Allow specific unfree packages
+      nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        "vscode"
+      ];
+
       homebrew = {
         enable = true;
         masApps = {
@@ -50,8 +54,9 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+
       users.knownUsers = [ "antti" ];
-      users.users.antti= {
+      users.users.antti = {
         name = "antti";
         home = "/Users/antti";
         uid = 501;
@@ -70,7 +75,6 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.antti = ./home.nix;
-
           # Optionally, use home-manager.extraSpecialArgs to pass
           # arguments to home.nix
         }
@@ -78,3 +82,4 @@
     };
   };
 }
+

@@ -21,6 +21,7 @@
       pkgs.aerospace
       pkgs.gh
       pkgs.tree
+      pkgs.vscode
     ];
   };
   programs = {
