@@ -5,16 +5,16 @@
     stateVersion = "25.05";
     file = {
       ".hushlogin" = {
-        source = ./.hushlogin;
+        source = ./dotfiles/.hushlogin;
       };
       ".aerospace.toml" = {
-        source = ./.aerospace.toml;
+        source = ./dotfiles/.aerospace.toml;
       };
       ".gitignore" = {
-        source = ./.global.gitignore;
+        source = ./dotfiles/.global.gitignore;
       };
       ".gitconfig" = {
-        source = ./.gitconfig;
+        source = ./dotfiles/.gitconfig;
       };
     };
     packages = [
