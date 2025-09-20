@@ -11,6 +11,7 @@ set fish_greeting
 
 # Aliases
 alias "cat=bat --plain"
+alias "tree=tree --dirsfirst"
 
 # Abbreviations.
 abbr -a 's' 'sudo'
