@@ -11,6 +11,9 @@
     home-manager.enable = true;
     git = {
       enable = true;
+      extraConfig = {
+        push = { autoSetupRemote = true; };
+      };
       userEmail = "antti@harju.io";
       userName = "anttiharju";
     };
