@@ -2,6 +2,8 @@
     name = anttiharju
     email = antti@harju.io
     signingkey = /Users/antti/.ssh/keys/github-sign
+[core]
+    editor = vim
 [push]
     autoSetupRemote = true
 [gpg]
