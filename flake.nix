@@ -23,11 +23,6 @@
       system.primaryUser = "antti";
       system.defaults.dock.autohide = true;
 
-      # Allow specific unfree packages
-      nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-        "vscode"
-      ];
-
       homebrew = {
         enable = true;
         masApps = {
@@ -52,9 +47,6 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
 
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
-
       users.knownUsers = [ "antti" ];
       users.users.antti = {
         name = "antti";
@@ -62,6 +54,11 @@
         uid = 501;
         shell = pkgs.fish;
       };
+
+      nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        "vscode"
+      ];
     };
   in
   {
