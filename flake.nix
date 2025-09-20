@@ -12,34 +12,15 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     configuration = { pkgs, lib, ... }: {
-      environment.systemPackages = [ pkgs.fish ];
-      programs.fish = {
-        enable = true;
-        interactiveShellInit = (builtins.readFile ./dotfiles/config.fish);
-      };
-
-      # Necessary for using flakes on this system.
+      nixpkgs.hostPlatform = "aarch64-darwin";
       nix.settings.experimental-features = "nix-command flakes";
-      system.defaults.dock.autohide = true;
-
-      # Not everything can be installed through nix.
-      homebrew = {
-        enable = true;
-        masApps = {
-          "Strongbox Pro" = 1481853033;
-        };
-        casks = [
-          "ghostty"
-          "orbstack"
-        ];
-      };
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
-
+      system.defaults.dock.autohide = true;
       system.primaryUser = "antti";
       users.knownUsers = [ "antti" ];
       users.users.antti = {
@@ -49,7 +30,25 @@
         shell = pkgs.fish;
       };
 
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      # Default shell
+      environment.systemPackages = [ pkgs.fish ];
+      programs.fish = {
+        enable = true;
+        interactiveShellInit = (builtins.readFile ./dotfiles/config.fish);
+      };
+
+      # Mac App Store and Homebrew
+      homebrew = {
+        enable = true;
+        masApps = {
+          "Strongbox Pro" = 1481853033; # id is from website url
+        };
+        casks = [
+          "ghostty" # not packaged via nix for aarch64-darwin
+          "orbstack"
+        ];
+      };
+
       nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
         "vscode"
       ];
@@ -69,4 +68,3 @@
     };
   };
 }
-
