@@ -10,7 +10,11 @@
       ".gitconfig" = { source = ./dotfiles/.gitconfig; };
     };
     packages = [
+      pkgs.vim
+      pkgs.git
+      pkgs.bat
       pkgs.aerospace
+      pkgs.gh
     ];
   };
   programs = {
