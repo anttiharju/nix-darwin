@@ -26,6 +26,9 @@
         masApps = {
           "Strongbox Pro" = 1481853033;
         };
+        casks = [
+          "ghostty"
+        ];
       };
 
       # Enable alternative shell support in nix-darwin.
