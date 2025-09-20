@@ -15,6 +15,7 @@
       pkgs.bat
       pkgs.aerospace
       pkgs.gh
+      pkgs.tree
     ];
   };
   programs = {
