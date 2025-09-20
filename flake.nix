@@ -29,6 +29,7 @@
 
       # Not everything can be installed through nix.
       system.primaryUser = "antti";
+      system.defaults.dock.autohide = true;
       homebrew = {
         enable = true;
         masApps = {
