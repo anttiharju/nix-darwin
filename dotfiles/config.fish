@@ -26,6 +26,7 @@ abbr -a 'prune-branches' 'git branch | grep -v "\*\\|  main\$\\|  master\$" | xa
 abbr -a 'gda' 'git reset --hard && git clean -df && git clean -dfx -e "*/.flox/**" -e "collections/**" -e "automation/bin/**" -e "plugins/**"'
 abbr -a 'gd' 'git reset --hard && git clean -df'
 abbr -a 'gs' 'git status'
+abbr -a 'gaa' 'git add --all'
 abbr -a 'gca' 'git commit --amend'
 abbr -a 'gcae' 'git commit --amend --no-edit'
 abbr -a 'allow-push' 'git config --local "branch.$(git branch --show-current).pushRemote" origin'
