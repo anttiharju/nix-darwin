@@ -4,7 +4,7 @@
     homeDirectory = "/Users/antti";
     stateVersion = "25.05";
     file = {
-      ".config/ghostty/config" = { source = ./dotfiles/ghostty; };
+      ".config/ghostty/config" = { source = ./dotfiles/ghostty.conf; };
       ".aerospace.toml" = { source = ./dotfiles/aerospace.toml; };
       ".gitignore" = { source = ./dotfiles/gitignore; };
       ".gitconfig" = { source = ./dotfiles/gitconfig; };
