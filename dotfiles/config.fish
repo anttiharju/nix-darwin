@@ -1,4 +1,4 @@
-if not set -q TMUX
+if not set -q TMUX; or test "$TERM_PROGRAM" = "vscode"
   exec tmux
 end
 
