@@ -30,5 +30,9 @@
       enable = true;
       includes = [ { path = "~/.gitconfig"; } ];
     };
+    tmux = {
+      enable = true;
+      extraConfig = (builtins.readFile ./dotfiles/tmux.conf);
+    };
   };
 }
