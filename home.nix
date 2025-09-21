@@ -22,6 +22,10 @@
         source = ./dotfiles/vscode/settings.jsonc;
         force = true;
       };
+      "Library/LaunchAgents/com.local.KeyRemapping.plist" = {
+        source = ./dotfiles/com.local.KeyRemapping.plist;
+        force = true;
+      };
     };
     packages = [
       pkgs.tree
