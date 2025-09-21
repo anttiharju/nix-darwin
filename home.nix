@@ -47,9 +47,6 @@
       settings = {
         number = true;
       };
-      plugins = with pkgs.vimPlugins; [
-        vim-sensible
-      ];
     };
   };
 }
