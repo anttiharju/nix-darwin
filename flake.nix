@@ -13,7 +13,7 @@
   outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, flox }:
   let
     # Base configuration shared by all hosts
-    mkConfiguration = { hostname }: { pkgs, lib, ... }: {
+    mkConfiguration = { hostname, uid }: { pkgs, lib, ... }: {
       nixpkgs.hostPlatform = "aarch64-darwin";
       nix.settings.experimental-features = "nix-command flakes";
       nix.settings.substituters = [ "https://cache.flox.dev" ];
@@ -44,7 +44,7 @@
       users.users.antti = {
         name = "antti";
         home = "/Users/antti";
-        uid = 501;
+        uid = uid;
         shell = pkgs.fish;
       };
 
@@ -81,17 +81,17 @@
     };
   in
   {
-    # Define configurations for both hostnames
+    # Define configurations for both hostnames with their specific UIDs
     darwinConfigurations."harju" = nix-darwin.lib.darwinSystem {
       modules = [
-        (mkConfiguration { hostname = "harju"; })
+        (mkConfiguration { hostname = "harju"; uid = 501; })
         home-manager.darwinModules.home-manager
         homeManagerCommonModule
       ];
     };
     darwinConfigurations."harju-work" = nix-darwin.lib.darwinSystem {
       modules = [
-        (mkConfiguration { hostname = "harju-work"; })
+        (mkConfiguration { hostname = "harju-work"; uid = 504; })
         home-manager.darwinModules.home-manager
         homeManagerCommonModule
       ];
