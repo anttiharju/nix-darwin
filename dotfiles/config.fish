@@ -1,5 +1,6 @@
 # Extend path
 set -gx PATH ~/.local/bin $PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # This is slow, hence the if condition.
 if not ssh-add -l >/dev/null 2>&1
