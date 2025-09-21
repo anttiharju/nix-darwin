@@ -4,3 +4,15 @@ confirm-close-surface = false
 ## new window
 keybind = cmd+t=unbind
 keybind = cmd+t=text:\x02c
+
+# close window
+keybind = cmd+w=unbind
+keybind = cmd+w=text:\x02&
+
+## next window
+keybind = cmd+opt+right=unbind
+keybind = cmd+opt+right=text:\x02n
+
+## previous window
+keybind = cmd+opt+left=unbind
+keybind = cmd+opt+left=text:\x02p
