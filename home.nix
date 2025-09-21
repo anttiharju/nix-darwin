@@ -17,6 +17,9 @@
       "Library/Application Support/Code/User/keybindings.json" = {
         source = ./dotfiles/vscode/keybindings.jsonc;
       };
+      "Library/Application Support/Code/User/settings.json" = {
+        source = ./dotfiles/vscode/settings.jsonc;
+      };
     };
     packages = [
       pkgs.tmux
