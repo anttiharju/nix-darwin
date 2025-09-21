@@ -20,6 +20,7 @@ alias "tree=tree --dirsfirst"
 
 # Abbreviations.
 abbr -a 's' 'sudo'
+abbr -a 'm' 'make'
 abbr -a 'shebang' 'printf "#!/usr/bin/env bash" | pbcopy'
 abbr -a 'prune-branches' 'git branch | grep -v "\*\\|  main\$\\|  master\$" | xargs git branch -D'
 abbr -a 'gda' 'git reset --hard && git clean -df && git clean -dfx -e "*/.flox/**" -e "collections/**" -e "automation/bin/**" -e "plugins/**"'
