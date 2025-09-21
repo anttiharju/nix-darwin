@@ -22,19 +22,21 @@
       system.stateVersion = 6;
       system.defaults.dock.autohide = true;
       system.primaryUser = "antti";
-      users.knownUsers = [ "antti" ];
-      users.users.antti = {
-        name = "antti";
-        home = "/Users/antti";
-        uid = 501;
-        shell = pkgs.fish;
-      };
 
       # Default shell
       environment.systemPackages = [ pkgs.fish ];
       programs.fish = {
         enable = true;
         interactiveShellInit = (builtins.readFile ./dotfiles/config.fish);
+      };
+
+      # User config
+      users.knownUsers = [ "antti" ];
+      users.users.antti = {
+        name = "antti";
+        home = "/Users/antti";
+        uid = 501;
+        shell = pkgs.fish;
       };
 
       # Mac App Store and Homebrew
