@@ -8,12 +8,15 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flox.url = "github:flox/flox/v1.7.3";
   };
-  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager }:
+  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, flox }:
   let
     configuration = { pkgs, lib, ... }: {
       nixpkgs.hostPlatform = "aarch64-darwin";
       nix.settings.experimental-features = "nix-command flakes";
+      nix.settings.substituters = [ "https://cache.flox.dev" ];
+      nix.settings.trusted-public-keys = [ "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs=" ];
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -24,7 +27,10 @@
       system.primaryUser = "antti";
 
       # Default shell
-      environment.systemPackages = [ pkgs.fish ];
+      environment.systemPackages = [
+        flox.packages.aarch64-darwin.default
+        pkgs.fish
+      ];
       programs.fish = {
         enable = true;
         interactiveShellInit = (builtins.readFile ./dotfiles/config.fish);
