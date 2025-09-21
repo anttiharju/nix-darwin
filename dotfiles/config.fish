@@ -29,6 +29,7 @@ abbr -a 'gra' 'git reset --hard && git clean -df && git clean -dfx -e "*/.flox/*
 abbr -a 'gr' 'git reset --hard && git clean -df'
 abbr -a 'gs' 'git status'
 abbr -a 'gaa' 'git add --all'
+abbr -a 'gc' 'git commit'
 abbr -a 'gca' 'git commit --amend'
 abbr -a 'gcae' 'git commit --amend --no-edit'
 abbr -a 'gpp' 'git push && gpr'
