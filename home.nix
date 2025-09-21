@@ -4,6 +4,7 @@
     homeDirectory = "/Users/antti";
     stateVersion = "25.05";
     file = {
+      "Library/LaunchAgents/com.local.KeyRemapping.plist" = { source = ./dotfiles/com.local.KeyRemapping.plist; };
       ".config/ghostty/config" = { source = ./dotfiles/ghostty.conf; };
       ".aerospace.toml" = { source = ./dotfiles/aerospace.toml; };
       ".gitignore" = { source = ./dotfiles/gitignore; };
@@ -20,10 +21,6 @@
       };
       "Library/Application Support/Code/User/settings.json" = {
         source = ./dotfiles/vscode/settings.jsonc;
-        force = true;
-      };
-      "Library/LaunchAgents/com.local.KeyRemapping.plist" = {
-        source = ./dotfiles/com.local.KeyRemapping.plist;
         force = true;
       };
     };
