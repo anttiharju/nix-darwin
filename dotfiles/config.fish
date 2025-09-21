@@ -6,19 +6,19 @@ end
 set -gx PATH ~/.local/bin $PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# This is slow, hence the if condition.
+# This is slow hence the if condition
 if not ssh-add -l >/dev/null 2>&1
   ssh-add --apple-load-keychain 2> /dev/null
 end
 
-# Disable greeting.
+# Disable greeting
 set fish_greeting
 
 # Aliases
 alias "cat=bat --plain"
 alias "tree=tree --dirsfirst"
 
-# Abbreviations.
+# Abbreviations
 abbr -a 's' 'sudo'
 abbr -a 'ma' 'make'
 abbr -a 'shebang' 'printf "#!/usr/bin/env bash" | pbcopy'
