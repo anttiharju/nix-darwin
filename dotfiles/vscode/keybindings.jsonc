@@ -94,15 +94,15 @@
     "args": { "text": "\u0002\"\u0002{" },
     "when": "terminalFocus"
   },
-  // Maximise panel
-  {
-    "key": "cmd+k",
-    "command": "workbench.action.toggleMaximizedPanel"
-  },
   // Toggle terminal
   {
-    "key": "cmd+shift+k",
+    "key": "cmd+k",
     "command": "workbench.action.terminal.toggleTerminal"
+  },
+  // Maximise panel
+  {
+    "key": "cmd+shift+k",
+    "command": "workbench.action.toggleMaximizedPanel"
   },
   // selection mode
   {
