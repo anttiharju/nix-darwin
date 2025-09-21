@@ -1,3 +1,7 @@
+if not set -q TMUX
+  exec tmux
+end
+
 # Extend path
 set -gx PATH ~/.local/bin $PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
