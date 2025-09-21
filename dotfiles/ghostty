@@ -1,1 +1,6 @@
 confirm-close-surface = false
+
+# tmux
+## new window
+keybind = cmd+t=unbind
+keybind = cmd+t=text:\x02c
