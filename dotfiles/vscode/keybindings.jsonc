@@ -100,7 +100,7 @@
   },
   // maximise
   {
-    "key": "cmd+shift+j",
+    "key": "cmd+j",
     "command": "workbench.action.toggleMaximizedPanel"
   },
   // selection mode
