@@ -16,8 +16,6 @@
       };
     };
     packages = [
-      pkgs.aerospace
-      pkgs.vscode
       pkgs.tree
       pkgs.bat
       pkgs.git

@@ -43,9 +43,15 @@
         masApps = {
           "Strongbox Pro" = 1481853033; # id is from website url
         };
+        taps = [
+          "nikitabobko/tap" # aerospace
+        ];
+        # Managing GUI applications through Nix on darwin is akward (not indexed by Spotlight)
         casks = [
-          "ghostty" # not packaged via nix for aarch64-darwin
+          "visual-studio-code"
+          "aerospace"
           "orbstack"
+          "ghostty"
         ];
       };
 
