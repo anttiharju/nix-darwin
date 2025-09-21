@@ -28,7 +28,6 @@
       pkgs.tree
       pkgs.bat
       pkgs.git
-      pkgs.vim
       pkgs.gh
     ];
   };
@@ -41,6 +40,16 @@
     tmux = {
       enable = true;
       extraConfig = (builtins.readFile ./dotfiles/tmux.conf);
+    };
+    vim = {
+      enable = true;
+      defaultEditor = true;
+      settings = {
+        number = true;
+      };
+      plugins = with pkgs.vimPlugins; [
+        vim-sensible
+      ];
     };
   };
 }
