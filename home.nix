@@ -14,6 +14,9 @@
         recursive = true;
         executable = true;
       };
+      "Library/Application Support/Code/User/keybindings.json" = {
+        source = ./dotfiles/vscode/keybindings.jsonc;
+      };
     };
     packages = [
       pkgs.tmux

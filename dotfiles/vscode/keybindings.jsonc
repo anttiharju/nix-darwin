@@ -1,0 +1,117 @@
+[
+  {
+    "key": "cmd+shift+j",
+    "command": "workbench.action.toggleMaximizedPanel"
+  },
+  {
+    "key": "cmd+[Semicolon]", // cmd+ö
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  // tmux
+  // New window
+  {
+    "key": "cmd+t",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002c" },
+    "when": "terminalFocus"
+  },
+  // Close window
+  {
+    "key": "cmd+w",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002&" },
+    "when": "terminalFocus"
+  },
+  // Next window
+  {
+    "key": "cmd+alt+right",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002n" },
+    "when": "terminalFocus"
+  },
+  // Previous window
+  {
+    "key": "cmd+alt+left",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002p" },
+    "when": "terminalFocus"
+  },
+  // Switch session
+  {
+    "key": "cmd+s",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002s" },
+    "when": "terminalFocus"
+  },
+  // Create a new session
+  {
+    "key": "cmd+n",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002:" },
+    "when": "terminalFocus"
+  },
+  // Pane navigation
+  // up
+  {
+    "key": "cmd+up",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002\u001b[A" },
+    "when": "terminalFocus"
+  },
+  // down
+  {
+    "key": "cmd+down",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002\u001b[B" },
+    "when": "terminalFocus"
+  },
+  // right
+  {
+    "key": "cmd+right",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002\u001b[C" },
+    "when": "terminalFocus"
+  },
+  // left
+  {
+    "key": "cmd+left",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002\u001b[D" },
+    "when": "terminalFocus"
+  },
+  // Close pane
+  {
+    "key": "cmd+w",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002x" },
+    "when": "terminalFocus"
+  },
+  // Split to right
+  {
+    "key": "cmd+shift+right",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002%" },
+    "when": "terminalFocus"
+  },
+  // Split to below
+  {
+    "key": "cmd+shift+down",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002\"" },
+    "when": "terminalFocus"
+  },
+  // Split to left
+  {
+    "key": "cmd+shift+left",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002%\u0002{" },
+    "when": "terminalFocus"
+  },
+  // Split to above
+  {
+    "key": "cmd+shift+up",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u0002\"\u0002{" },
+    "when": "terminalFocus"
+  }
+]
