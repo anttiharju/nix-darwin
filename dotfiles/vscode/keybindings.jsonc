@@ -1,8 +1,4 @@
 [
-  {
-    "key": "cmd+[Semicolon]", // cmd+ö
-    "command": "workbench.action.terminal.toggleTerminal"
-  },
   // tmux
   // - new window
   {
@@ -98,10 +94,15 @@
     "args": { "text": "\u0002\"\u0002{" },
     "when": "terminalFocus"
   },
-  // maximise
+  // Maximise panel
   {
-    "key": "cmd+j",
+    "key": "cmd+k",
     "command": "workbench.action.toggleMaximizedPanel"
+  },
+  // Toggle terminal
+  {
+    "key": "cmd+shift+k",
+    "command": "workbench.action.terminal.toggleTerminal"
   },
   // selection mode
   {
