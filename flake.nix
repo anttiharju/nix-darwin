@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
+  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager }:
   let
     configuration = { pkgs, lib, ... }: {
       nixpkgs.hostPlatform = "aarch64-darwin";
