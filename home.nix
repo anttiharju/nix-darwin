@@ -24,10 +24,8 @@
       };
     };
     packages = [
-      pkgs.tmux
       pkgs.tree
       pkgs.bat
-      pkgs.git
       pkgs.gh
     ];
   };
