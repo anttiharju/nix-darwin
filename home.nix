@@ -11,7 +11,13 @@
       ".gitconfig" = { source = ./dotfiles/gitconfig; };
       ".hushlogin" = { source = ./dotfiles/hushlogin; };
       ".local/bin" = {
-        source = ./utils;
+        source = pkgs.runCommandNoCC "bin-scripts" {} ''
+          mkdir -p $out
+          for file in ${./utils}/*.sh; do
+            name=$(basename "$file" .sh)
+            ln -s "$file" "$out/$name"
+          done
+        '';
         recursive = true;
         executable = true;
       };
