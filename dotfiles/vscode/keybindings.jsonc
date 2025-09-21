@@ -43,28 +43,28 @@
   // pane navigation
   // right
   {
-    "key": "opt+shift+right",
+    "key": "alt+shift+right",
     "command": "workbench.action.terminal.sendSequence",
     "args": { "text": "\u0002\u001b[C" },
     "when": "terminalFocus"
   },
   // down
   {
-    "key": "opt+shift+down",
+    "key": "alt+shift+down",
     "command": "workbench.action.terminal.sendSequence",
     "args": { "text": "\u0002\u001b[B" },
     "when": "terminalFocus"
   },
   // left
   {
-    "key": "opt+shift+left",
+    "key": "alt+shift+left",
     "command": "workbench.action.terminal.sendSequence",
     "args": { "text": "\u0002\u001b[D" },
     "when": "terminalFocus"
   },
   // - up
   {
-    "key": "opt+shift+up",
+    "key": "alt+shift+up",
     "command": "workbench.action.terminal.sendSequence",
     "args": { "text": "\u0002\u001b[A" },
     "when": "terminalFocus"
