@@ -12,7 +12,8 @@
   };
   outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, flox }:
   let
-    configuration = { pkgs, lib, ... }: {
+    # Base configuration shared by all hosts
+    mkConfiguration = { hostname }: { pkgs, lib, ... }: {
       nixpkgs.hostPlatform = "aarch64-darwin";
       nix.settings.experimental-features = "nix-command flakes";
       nix.settings.substituters = [ "https://cache.flox.dev" ];
@@ -25,12 +26,14 @@
       system.stateVersion = 6;
       system.defaults.dock.autohide = true;
       system.primaryUser = "antti";
+      networking.hostName = hostname;
 
       # Default shell
       environment.systemPackages = [
         flox.packages.aarch64-darwin.default
         pkgs.fish
       ];
+
       programs.fish = {
         enable = true;
         interactiveShellInit = (builtins.readFile ./dotfiles/config.fish);
@@ -67,17 +70,30 @@
         "vscode"
       ];
     };
+
+    # Common home-manager module
+    homeManagerCommonModule = {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users.antti = ./home.nix;
+      };
+    };
   in
   {
+    # Define configurations for both hostnames
     darwinConfigurations."harju" = nix-darwin.lib.darwinSystem {
       modules = [
-        configuration
+        (mkConfiguration { hostname = "harju"; })
         home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.antti = ./home.nix;
-        }
+        homeManagerCommonModule
+      ];
+    };
+    darwinConfigurations."harju-work" = nix-darwin.lib.darwinSystem {
+      modules = [
+        (mkConfiguration { hostname = "harju-work"; })
+        home-manager.darwinModules.home-manager
+        homeManagerCommonModule
       ];
     };
   };
