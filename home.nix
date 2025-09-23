@@ -5,6 +5,7 @@
     stateVersion = "25.05";
     file = {
       "Library/LaunchAgents/com.local.KeyRemapping.plist" = { source = ./dotfiles/com.local.KeyRemapping.plist; };
+      ".config/direnv/direnv.toml" = { source = ./dotfiles/direnv.toml; };
       ".config/ghostty/config" = { source = ./dotfiles/ghostty.conf; };
       ".aerospace.toml" = { source = ./dotfiles/aerospace.toml; };
       ".gitignore" = { source = ./dotfiles/gitignore; };
