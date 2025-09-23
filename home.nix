@@ -57,5 +57,9 @@
       enable = true;
       interactiveShellInit = (builtins.readFile ./dotfiles/config.fish);
     };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
   };
 }
