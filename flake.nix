@@ -31,12 +31,10 @@
       # Default shell
       environment.systemPackages = [
         flox.packages.aarch64-darwin.default
-        pkgs.fish
       ];
 
       programs.fish = {
         enable = true;
-        interactiveShellInit = (builtins.readFile ./dotfiles/config.fish);
       };
 
       # User config
