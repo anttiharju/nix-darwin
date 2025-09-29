@@ -73,7 +73,8 @@ def get_target_url(repo_url, branch, is_default_branch):
 
 def find_github_tab(url):
     """Find matching Chrome tab for GitHub URL"""
-    tabs = run(["chrome-cli", "list", "links"])
+    # Check if chrome-cli command succeeds (Chrome is running)
+    tabs = run(["chrome-cli", "list", "links"], silent=True)
     if not tabs:
         return None
 
@@ -112,6 +113,12 @@ def find_github_tab(url):
 
 def open_in_browser(url, tab_id=None):
     """Open URL in Chrome browser"""
+    # If chrome-cli failed earlier, Chrome is not running, use open command
+    if tab_id is None and not run(["chrome-cli", "list"], get_output=False, silent=True):
+        run(["open", url], get_output=False)
+        return
+
+    # Otherwise, use chrome-cli as before
     if tab_id:
         run(["chrome-cli", "activate", "-t", tab_id], get_output=False)
         run(["chrome-cli", "open", url, "-t", tab_id], get_output=False)
