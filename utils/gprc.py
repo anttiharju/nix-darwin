@@ -80,6 +80,7 @@ def get_default_branch():
         print(f"Error determining default branch: {e}")
         return None
 
+
 def get_github_origin():
     """
     Get the GitHub origin URL of the current Git repository.
@@ -91,7 +92,9 @@ def get_github_origin():
         # Get the origin URL
         result = subprocess.run(
             ["git", "remote", "get-url", "origin"],
-            capture_output=True, text=True, check=True
+            capture_output=True,
+            text=True,
+            check=True,
         )
 
         origin = result.stdout.strip()
@@ -109,6 +112,7 @@ def get_github_origin():
     except Exception as e:
         print(f"Error determining origin: {e}")
         return None
+
 
 def get_repo_url(origin):
     """
@@ -137,6 +141,34 @@ def get_repo_url(origin):
         print("Error: Only SSH and HTTPS GitHub URLs are supported.")
         return None
 
+
+def get_current_branch():
+    """
+    Get the name of the current Git branch.
+
+    Returns:
+        str: Name of the current branch or None if not in a Git repository
+    """
+    try:
+        # Run the git command to get current branch name
+        result = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+
+        # Return the branch name (trimming any whitespace)
+        return result.stdout.strip()
+
+    except subprocess.CalledProcessError as e:
+        print(f"Git error: {e}")
+        return None
+    except Exception as e:
+        print(f"Error determining current branch: {e}")
+        return None
+
+
 # Example usage
 if __name__ == "__main__":
     ids, urls = get_github_links()
@@ -160,3 +192,6 @@ if __name__ == "__main__":
 
     if repo_url:
         print(f"Repository URL: {repo_url}")
+
+    current_branch = get_current_branch()
+    print(f"Current branch: {current_branch}")
