@@ -44,6 +44,43 @@ def get_github_links():
         return [], []
 
 
+def get_default_branch():
+    """
+    Get the default branch (e.g., main, master) of the current Git repository.
+
+    Returns:
+        str: Name of the default branch or None if not in a Git repository
+    """
+    try:
+        # Check if we're in a Git repository
+        subprocess.run(
+            ["git", "rev-parse", "--is-inside-work-tree"],
+            capture_output=True,
+            check=True,
+        )
+
+        # Get the default branch from origin/HEAD
+        result = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "origin/HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+
+        # Extract the branch name from "origin/main"
+        default_branch = result.stdout.strip()
+        if default_branch.startswith("origin/"):
+            default_branch = default_branch[len("origin/") :]
+
+        return default_branch
+
+    except subprocess.CalledProcessError:
+        return None
+    except Exception as e:
+        print(f"Error determining default branch: {e}")
+        return None
+
+
 # Example usage
 if __name__ == "__main__":
     ids, urls = get_github_links()
@@ -53,3 +90,9 @@ if __name__ == "__main__":
     # Example of how to access individual items
     for i, (id_val, url) in enumerate(zip(ids, urls)):
         print(f"{i + 1}. ID: {id_val}, URL: {url}")
+
+    default_branch = get_default_branch()
+    if default_branch:
+        print(f"Default branch: {default_branch}")
+    else:
+        print("Error: Not in a Git repository or couldn't determine default branch.")
