@@ -4,81 +4,94 @@ import re
 import sys
 
 
-def run_command(cmd, return_stdout=True, silent=False):
-    """Run a shell command and return stdout or success status"""
+def run(cmd, get_output=True, silent=False):
+    """Run command and return output or status"""
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-        return result.stdout.strip() if return_stdout else True
+        return result.stdout.strip() if get_output else True
     except Exception:
         if not silent:
-            print(f"Command error: {' '.join(cmd)}")
-        return None if return_stdout else False
+            print(f"Error: {' '.join(cmd)}")
+        return None if get_output else False
 
 
-def get_github_chrome_tabs():
-    """Get GitHub links from Chrome browser"""
-    tabs = run_command(["chrome-cli", "list", "links"])
-    tab_map = {}
-
-    if not tabs:
-        return tab_map
-
-    # Extract tab IDs and URLs for GitHub tabs
-    for line in tabs.splitlines():
-        if "github.com" not in line:
-            continue
-
-        id_match = re.search(r"\[(\d+)\]", line)
-        parts = line.split()
-
-        if id_match and len(parts) > 1:
-            tab_map[parts[1]] = id_match.group(1)
-
-    return tab_map
-
-
-def get_github_repo_url():
-    """Get GitHub repository URL"""
-    # Check if we're in a git repository
-    if not run_command(
-        ["git", "rev-parse", "--is-inside-work-tree"], return_stdout=False, silent=True
+def get_repo_info():
+    """Get repository URL and branch information"""
+    # Verify git repo
+    if not run(
+        ["git", "rev-parse", "--is-inside-work-tree"], get_output=False, silent=True
     ):
         print("Error: Not in a Git repository")
         sys.exit(1)
 
-    # Get origin URL
-    origin = run_command(["git", "remote", "get-url", "origin"])
+    # Get origin URL and convert to browser URL
+    origin = run(["git", "remote", "get-url", "origin"])
     if not origin or "github.com" not in origin:
         print("Error: Not a GitHub repository")
         sys.exit(1)
 
-    # Convert origin to browser URL
     if origin.startswith("git@github.com:"):
-        repo_path = origin.split("git@github.com:")[1].replace(".git", "")
-        return f"https://github.com/{repo_path}"
+        repo_url = f"https://github.com/{origin.split('git@github.com:')[1].replace('.git', '')}"
     elif origin.startswith("https://github.com/"):
-        return origin.replace(".git", "")
+        repo_url = origin.replace(".git", "")
     else:
         print("Error: Unsupported GitHub URL format")
         sys.exit(1)
 
-
-def get_branch_info():
-    """Get current and default branch names"""
-    current = run_command(["git", "rev-parse", "--abbrev-ref", "HEAD"])
-    default_ref = run_command(["git", "rev-parse", "--abbrev-ref", "origin/HEAD"])
+    # Get branch information
+    current = run(["git", "rev-parse", "--abbrev-ref", "HEAD"])
+    default_ref = run(["git", "rev-parse", "--abbrev-ref", "origin/HEAD"])
     default = default_ref.replace("origin/", "") if default_ref else "main"
 
-    return current, default
+    return repo_url, current, default
 
 
-def find_matching_tab(url, tab_map):
-    """Find tab ID for a GitHub URL"""
-    # Direct match
+def get_target_url(repo_url, branch, is_default_branch):
+    """Get target URL based on branch"""
+    if is_default_branch:
+        return repo_url
+
+    # For feature branches, get PR URL
+    try:
+        owner, repo = repo_url.split("github.com/")[1].split("/")[:2]
+        pr_url = run(
+            [
+                "gh",
+                "api",
+                f"repos/{owner}/{repo}/pulls?head={owner}:{branch}",
+                "--jq",
+                ".[0].html_url",
+            ]
+        )
+        if pr_url:
+            return pr_url
+    except Exception:
+        pass
+
+    return f"{repo_url}/pull/{branch}"
+
+
+def find_github_tab(url):
+    """Find matching Chrome tab for GitHub URL"""
+    tabs = run(["chrome-cli", "list", "links"])
+    if not tabs:
+        return None
+
+    # Build map of GitHub tabs
+    tab_map = {}
+    for line in tabs.splitlines():
+        if "github.com" not in line:
+            continue
+
+        match = re.search(r"\[(\d+)\]\s+(\S+)", line)
+        if match:
+            tab_map[match.group(2)] = match.group(1)
+
+    # Try direct match
     if url in tab_map:
         return tab_map[url]
 
-    # Base repo match (github.com/owner/repo)
+    # Try base repo match
     base_match = re.search(r"(https://github\.com/[^/]+/[^/]+)", url)
     if base_match:
         base_url = base_match.group(1)
@@ -89,55 +102,24 @@ def find_matching_tab(url, tab_map):
     return None
 
 
-def get_pr_url(repo_url, branch):
-    """Get PR URL for a branch"""
-    try:
-        path_parts = repo_url.split("github.com/")[1].split("/")
-        owner, repo = path_parts[0], path_parts[1]
-
-        # Check for existing PR using GitHub CLI
-        pr_url = run_command(
-            [
-                "gh",
-                "api",
-                f"repos/{owner}/{repo}/pulls?head={owner}:{branch}",
-                "--jq",
-                ".[0].html_url",
-            ]
-        )
-
-        if pr_url:
-            return pr_url
-    except Exception:
-        pass
-
-    # Default to pull URL if no PR found
-    return f"{repo_url}/pull/{branch}"
-
-
-def open_in_chrome(url, tab_id=None):
-    """Open URL in Chrome, reusing tab if possible"""
+def open_in_browser(url, tab_id=None):
+    """Open URL in Chrome browser"""
     if tab_id:
-        run_command(["chrome-cli", "activate", "-t", tab_id])
-        run_command(["chrome-cli", "open", url, "-t", tab_id], return_stdout=False)
+        run(["chrome-cli", "activate", "-t", tab_id])
+        run(["chrome-cli", "open", url, "-t", tab_id], get_output=False)
     else:
-        run_command(["chrome-cli", "open", url], return_stdout=False)
+        run(["chrome-cli", "open", url], get_output=False)
 
 
 if __name__ == "__main__":
-    # Get repository info
-    repo_url = get_github_repo_url()
-    current_branch, default_branch = get_branch_info()
+    # Get repository and branch info
+    repo_url, current_branch, default_branch = get_repo_info()
 
-    # Get target URL based on branch
-    if current_branch == default_branch:
-        target_url = repo_url  # Use repo homepage for default branch
-    else:
-        target_url = get_pr_url(
-            repo_url, current_branch
-        )  # Use PR page for other branches
+    # Determine target URL
+    target_url = get_target_url(
+        repo_url, current_branch, current_branch == default_branch
+    )
 
-    # Find matching Chrome tab and open URL
-    tab_map = get_github_chrome_tabs()
-    tab_id = find_matching_tab(target_url, tab_map)
-    open_in_chrome(target_url, tab_id)
+    # Find and open in browser
+    tab_id = find_github_tab(target_url)
+    open_in_browser(target_url, tab_id)
