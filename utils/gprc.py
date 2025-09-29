@@ -191,6 +191,41 @@ def find_matching_tab_id(target_url, urls, ids):
 
     return None
 
+
+def open_github_tab(url, matching_id=None):
+    """
+    Open a GitHub URL in Chrome, either opening an existing tab
+    or creating a new one, and focus that tab.
+
+    Args:
+        url (str): The URL to open
+        matching_id (str, optional): ID of an existing tab with this URL
+
+    Returns:
+        bool: True if successful, False otherwise
+    """
+    try:
+        if matching_id:
+            # First, switch chrome to the existing tab
+            subprocess.run(["chrome-cli", "activate", "-t", matching_id], check=True)
+            # Then open the URL in that tab
+            subprocess.run(["chrome-cli", "open", url, "-t", matching_id], check=True)
+            print(f"Opened and focused existing tab with URL: {url}")
+        else:
+            # For new tabs, chrome-cli open will automatically focus the tab
+            subprocess.run(["chrome-cli", "open", url], check=True)
+            print(f"Opened new tab with URL: {url}")
+
+        return True
+
+    except subprocess.CalledProcessError as e:
+        print(f"Error opening Chrome tab: {e}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return False
+
+
 # Example usage
 if __name__ == "__main__":
     ids, urls = get_github_links()
@@ -220,3 +255,4 @@ if __name__ == "__main__":
 
     matching_id = find_matching_tab_id(repo_url, urls, ids)
     print("Matching Tab ID: ", matching_id)
+    open_github_tab(repo_url, matching_id)
