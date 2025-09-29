@@ -169,6 +169,28 @@ def get_current_branch():
         return None
 
 
+def find_matching_tab_id(target_url, urls, ids):
+    """
+    Find the ID of a Chrome tab that matches the given URL.
+
+    Args:
+        target_url (str): The URL to match
+        urls (list): List of URLs from chrome tabs
+        ids (list): List of corresponding tab IDs
+
+    Returns:
+        str: The ID of the matching tab, or None if no match is found
+    """
+    if not target_url or not urls or not ids:
+        return None
+
+    for i, url in enumerate(urls):
+        # Check if the target URL is part of the tab URL
+        if target_url in url:
+            return ids[i]
+
+    return None
+
 # Example usage
 if __name__ == "__main__":
     ids, urls = get_github_links()
@@ -195,3 +217,6 @@ if __name__ == "__main__":
 
     current_branch = get_current_branch()
     print(f"Current branch: {current_branch}")
+
+    matching_id = find_matching_tab_id(repo_url, urls, ids)
+    print("Matching Tab ID: ", matching_id)
