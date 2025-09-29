@@ -225,6 +225,50 @@ def open_github_tab(url, matching_id=None):
         print(f"Unexpected error: {e}")
         return False
 
+def get_pr_url(repo_url, branch):
+    """
+    Get the URL of an existing pull request for the current branch.
+    If no PR exists, return a URL to create a new one.
+
+    Args:
+        repo_url (str): Repository URL in https://github.com/owner/repo format
+        branch (str): Branch name
+
+    Returns:
+        str: URL to an existing PR or URL to create a new PR
+    """
+    try:
+        # Extract owner and repo from the repository URL
+        path_parts = repo_url.split('github.com/')[1].split('/')
+        owner = path_parts[0]
+        repo = path_parts[1] if len(path_parts) > 1 else None
+
+        if not owner or not repo:
+            print("Error: Could not extract owner/repo from URL")
+            return None
+
+        # Query GitHub API for PRs with the current branch
+        result = subprocess.run(
+            ["gh", "api", f"repos/{owner}/{repo}/pulls?head={owner}:{branch}", "--jq", ".[0].html_url"],
+            capture_output=True,
+            text=True,
+        )
+
+        pr_url = result.stdout.strip()
+
+        # If no PR exists, return URL to create a new one
+        if not pr_url:
+            return f"{repo_url}/pull/{branch}"
+
+        return pr_url
+
+    except subprocess.CalledProcessError as e:
+        print(f"Error querying GitHub API: {e}")
+        # Fall back to create PR URL
+        return f"{repo_url}/pull/{branch}"
+    except Exception as e:
+        print(f"Error finding PR URL: {e}")
+        return None
 
 # Example usage
 if __name__ == "__main__":
@@ -257,3 +301,10 @@ if __name__ == "__main__":
         matching_id = find_matching_tab_id(repo_url, urls, ids)
         print("Matching Tab ID: ", matching_id)
         open_github_tab(repo_url, matching_id)
+    else:
+        pr_url = get_pr_url(repo_url, current_branch)
+        if pr_url:
+            # Find if the PR URL is already open in a tab
+            matching_id = find_matching_tab_id(pr_url, urls, ids)
+            # Open or focus the tab with the PR
+            open_github_tab(pr_url, matching_id)
