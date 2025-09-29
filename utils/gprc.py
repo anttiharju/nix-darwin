@@ -110,6 +110,33 @@ def get_github_origin():
         print(f"Error determining origin: {e}")
         return None
 
+def get_repo_url(origin):
+    """
+    Convert a Git origin URL to a browser-friendly GitHub URL.
+
+    Args:
+        origin (str): Git origin URL (SSH or HTTPS format)
+
+    Returns:
+        str: Browser-friendly GitHub URL or None if format is not supported
+    """
+    if origin.startswith("git@github.com:"):
+        # Convert SSH format (git@github.com:username/repo.git) to HTTPS
+        repo_path = origin.split("git@github.com:")[1]
+        if repo_path.endswith(".git"):
+            repo_path = repo_path[:-4]  # Remove .git suffix
+        return f"https://github.com/{repo_path}"
+
+    elif origin.startswith("https://github.com/"):
+        # Already HTTPS format, just remove .git if present
+        if origin.endswith(".git"):
+            return origin[:-4]
+        return origin
+
+    else:
+        print("Error: Only SSH and HTTPS GitHub URLs are supported.")
+        return None
+
 # Example usage
 if __name__ == "__main__":
     ids, urls = get_github_links()
@@ -128,3 +155,8 @@ if __name__ == "__main__":
 
     github_origin = get_github_origin()
     print(f"GitHub Origin: {github_origin}")
+
+    repo_url = get_repo_url(github_origin)
+
+    if repo_url:
+        print(f"Repository URL: {repo_url}")
