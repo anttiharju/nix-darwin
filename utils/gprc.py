@@ -225,7 +225,6 @@ def open_github_tab(url, matching_id=None):
             subprocess.run(["chrome-cli", "activate", "-t", matching_id], check=True)
             # Then open the URL in that tab
             subprocess.run(["chrome-cli", "open", url, "-t", matching_id], check=True)
-            print(f"Opened and focused existing tab with URL: {url}")
         else:
             # For new tabs, chrome-cli open will automatically focus the tab
             subprocess.run(["chrome-cli", "open", url], check=True)
@@ -296,38 +295,17 @@ def get_pr_url(repo_url, branch):
 # Example usage
 if __name__ == "__main__":
     ids, urls = get_github_links()
-    print("IDs:", ids)
-    print("URLs:", urls)
-
-    # Example of how to access individual items
-    for i, (id_val, url) in enumerate(zip(ids, urls)):
-        print(f"{i + 1}. ID: {id_val}, URL: {url}")
-
     default_branch = get_default_branch()
-    if default_branch:
-        print(f"Default branch: {default_branch}")
-    else:
-        print("Error: Not in a Git repository or couldn't determine default branch.")
-
     github_origin = get_github_origin()
-    print(f"GitHub Origin: {github_origin}")
-
     repo_url = get_repo_url(github_origin)
-
-    if repo_url:
-        print(f"Repository URL: {repo_url}")
-
     current_branch = get_current_branch()
-    print(f"Current branch: {current_branch}")
 
     if current_branch == default_branch:
         matching_id = find_matching_tab_id(repo_url, urls, ids)
-        print("Matching Tab ID: ", matching_id)
         open_github_tab(repo_url, matching_id)
     else:
         pr_url = get_pr_url(repo_url, current_branch)
         # Find if the PR URL is already open in a tab
         matching_id = find_matching_tab_id(pr_url, urls, ids)
-        print("Matching Tab ID: ", matching_id)
         # Open or focus the tab with the PR
         open_github_tab(pr_url, matching_id)
