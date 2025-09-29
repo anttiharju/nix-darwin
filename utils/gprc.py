@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import subprocess
-import re
 import sys
 
 
@@ -83,18 +82,26 @@ def find_github_tab(url):
         if "github.com" not in line:
             continue
 
-        match = re.search(r"\[(\d+)\]\s+(\S+)", line)
-        if match:
-            tab_map[match.group(2)] = match.group(1)
+        # Parse line format: [tab_id] url
+        parts = line.split(None, 1)  # Split on first whitespace
+        if len(parts) == 2:
+            tab_id_part = parts[0]
+            url_part = parts[1]
+
+            # Extract tab ID from [123] format
+            if tab_id_part.startswith("[") and tab_id_part.endswith("]"):
+                tab_id = tab_id_part[1:-1]  # Remove brackets
+                tab_map[url_part] = tab_id
 
     # Try direct match
     if url in tab_map:
         return tab_map[url]
 
-    # Try base repo match
-    base_match = re.search(r"(https://github\.com/[^/]+/[^/]+)", url)
-    if base_match:
-        base_url = base_match.group(1)
+    # Try base repo match - using string operations
+    url_parts = url.split("/")
+    if len(url_parts) >= 5 and "github.com" in url_parts[2]:
+        # Extract base repo URL (https://github.com/owner/repo)
+        base_url = "/".join(url_parts[:5])
         for tab_url, tab_id in tab_map.items():
             if base_url in tab_url:
                 return tab_id
