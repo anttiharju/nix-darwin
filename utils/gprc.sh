@@ -13,5 +13,10 @@ while read -r line; do
     urls+=("$url")
 done < <(chrome-cli list links | grep 'github.com')
 
-echo "${ids[@]}"
-echo "${urls[@]}"
+# Nothing to work with
+if [ ${#ids[@]} -eq 0 ] || [ ${#urls[@]} -eq 0 ]; then
+    exit 1
+fi
+
+printf "%s\n" "${ids[@]}"
+printf "%s\n" "${urls[@]}"
