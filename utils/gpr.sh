@@ -57,7 +57,6 @@ repo=$(echo "$repo_url" | cut -d'/' -f5)
 pr_url=$(gh api "repos/$owner/$repo/pulls?head=$owner:$branch" --jq '.[0].html_url')
 
 if [ -z "$pr_url" ]; then
-    # TODO: push branch if it hasn't been pushed to remote.
     open "$repo_url/pull/$branch"
     exit 0
 fi
