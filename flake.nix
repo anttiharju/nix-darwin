@@ -55,10 +55,12 @@
         taps = [
           "nikitabobko/tap" # aerospace
         ];
+        brews = [
+          "chrome-cli"
+        ];
         # Managing GUI applications through Nix on darwin is akward (not indexed by Spotlight)
         casks = [
           "visual-studio-code"
-          "chrome-cli"
           "aerospace"
           "orbstack"
           "ghostty"
