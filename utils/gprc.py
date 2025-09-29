@@ -7,10 +7,12 @@ def run(cmd, get_output=True, silent=False):
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, check=True)
         return result.stdout.strip() if get_output else True
-    except Exception:
+    except subprocess.SubprocessError:
         if not silent:
             print(f"Error: {' '.join(cmd)}")
         return None if get_output else False
+    except KeyboardInterrupt:
+        exit(1)
 
 
 def get_repo_info():
@@ -118,14 +120,17 @@ def open_in_browser(url, tab_id=None):
 
 
 if __name__ == "__main__":
-    # Get repository and branch info
-    repo_url, current_branch, default_branch = get_repo_info()
+    try:
+        # Get repository and branch info
+        repo_url, current_branch, default_branch = get_repo_info()
 
-    # Determine target URL
-    target_url = get_target_url(
-        repo_url, current_branch, current_branch == default_branch
-    )
+        # Determine target URL
+        target_url = get_target_url(
+            repo_url, current_branch, current_branch == default_branch
+        )
 
-    # Find and open in browser
-    tab_id = find_github_tab(target_url)
-    open_in_browser(target_url, tab_id)
+        # Find and open in browser
+        tab_id = find_github_tab(target_url)
+        open_in_browser(target_url, tab_id)
+    except KeyboardInterrupt:
+        exit(1)
