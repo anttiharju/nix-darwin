@@ -14,10 +14,12 @@
       ".local/bin" = {
         source = pkgs.runCommandNoCC "bin-scripts" {} ''
           mkdir -p $out
-          for file in ${./utils}/*.sh; do
-            filename=$(basename "$file")
-            name=$(basename "$file" .sh)
-            ln -s "/etc/nix-darwin/utils/$filename" "$out/$name"
+          for file in ${./utils}/*; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file")
+              name=''${filename%.*}
+              ln -s "/etc/nix-darwin/utils/$filename" "$out/$name"
+            fi
           done
         '';
         recursive = true;
