@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import subprocess
-import sys
 
 
 def run(cmd, get_output=True, silent=False):
@@ -21,13 +20,13 @@ def get_repo_info():
         ["git", "rev-parse", "--is-inside-work-tree"], get_output=False, silent=True
     ):
         print("Error: Not in a Git repository")
-        sys.exit(1)
+        exit(1)
 
     # Get origin URL and convert to browser URL
     origin = run(["git", "remote", "get-url", "origin"])
     if not origin or "github.com" not in origin:
         print("Error: Not a GitHub repository")
-        sys.exit(1)
+        exit(1)
 
     if origin.startswith("git@github.com:"):
         repo_url = f"https://github.com/{origin.split('git@github.com:')[1].replace('.git', '')}"
@@ -35,7 +34,7 @@ def get_repo_info():
         repo_url = origin.replace(".git", "")
     else:
         print("Error: Unsupported GitHub URL format")
-        sys.exit(1)
+        exit(1)
 
     # Get branch information
     current = run(["git", "rev-parse", "--abbrev-ref", "HEAD"])
