@@ -270,6 +270,21 @@ def get_pr_url(repo_url, branch):
         print(f"Error finding PR URL: {e}")
         return None
 
+def git_push():
+    """
+    Simple function to push current branch to remote.
+
+    Returns:
+        bool: True if successful, False otherwise
+    """
+    try:
+        subprocess.run(["git", "push"], check=True)
+        print("Successfully pushed current branch")
+        return True
+    except subprocess.SubprocessError as e:
+        print(f"Failed to push branch: {e}")
+        return False
+
 # Example usage
 if __name__ == "__main__":
     ids, urls = get_github_links()
@@ -306,5 +321,6 @@ if __name__ == "__main__":
         if pr_url:
             # Find if the PR URL is already open in a tab
             matching_id = find_matching_tab_id(pr_url, urls, ids)
+            git_push()
             # Open or focus the tab with the PR
             open_github_tab(pr_url, matching_id)
