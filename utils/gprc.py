@@ -253,6 +253,7 @@ if __name__ == "__main__":
     current_branch = get_current_branch()
     print(f"Current branch: {current_branch}")
 
-    matching_id = find_matching_tab_id(repo_url, urls, ids)
-    print("Matching Tab ID: ", matching_id)
-    open_github_tab(repo_url, matching_id)
+    if current_branch == default_branch:
+        matching_id = find_matching_tab_id(repo_url, urls, ids)
+        print("Matching Tab ID: ", matching_id)
+        open_github_tab(repo_url, matching_id)
