@@ -15,8 +15,9 @@
         source = pkgs.runCommandNoCC "bin-scripts" {} ''
           mkdir -p $out
           for file in ${./utils}/*.sh; do
+            filename=$(basename "$file")
             name=$(basename "$file" .sh)
-            ln -s "$file" "$out/$name"
+            ln -s "/etc/nix-darwin/utils/$filename" "$out/$name"
           done
         '';
         recursive = true;
