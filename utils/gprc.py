@@ -172,6 +172,7 @@ def get_current_branch():
 def find_matching_tab_id(target_url, urls, ids):
     """
     Find the ID of a Chrome tab that matches the given URL.
+    First tries for exact match, then ensures it matches at least github.com/owner/repo.
 
     Args:
         target_url (str): The URL to match
@@ -184,10 +185,24 @@ def find_matching_tab_id(target_url, urls, ids):
     if not target_url or not urls or not ids:
         return None
 
+    # First, try for an exact match
     for i, url in enumerate(urls):
-        # Check if the target URL is part of the tab URL
-        if target_url in url:
+        if target_url == url:
             return ids[i]
+
+    # Extract the base repository URL (github.com/owner/repo) from the target URL
+    import re
+
+    base_repo_pattern = r"(https?://github\.com/[^/]+/[^/]+)"
+    base_repo_match = re.search(base_repo_pattern, target_url)
+
+    if base_repo_match:
+        base_repo_url = base_repo_match.group(1)
+
+        # Look for URLs that contain the base repository URL
+        for i, url in enumerate(urls):
+            if base_repo_url in url:
+                return ids[i]
 
     return None
 
@@ -225,6 +240,7 @@ def open_github_tab(url, matching_id=None):
         print(f"Unexpected error: {e}")
         return False
 
+
 def get_pr_url(repo_url, branch):
     """
     Get the URL of an existing pull request for the current branch.
@@ -239,7 +255,7 @@ def get_pr_url(repo_url, branch):
     """
     try:
         # Extract owner and repo from the repository URL
-        path_parts = repo_url.split('github.com/')[1].split('/')
+        path_parts = repo_url.split("github.com/")[1].split("/")
         owner = path_parts[0]
         repo = path_parts[1] if len(path_parts) > 1 else None
 
@@ -249,7 +265,13 @@ def get_pr_url(repo_url, branch):
 
         # Query GitHub API for PRs with the current branch
         result = subprocess.run(
-            ["gh", "api", f"repos/{owner}/{repo}/pulls?head={owner}:{branch}", "--jq", ".[0].html_url"],
+            [
+                "gh",
+                "api",
+                f"repos/{owner}/{repo}/pulls?head={owner}:{branch}",
+                "--jq",
+                ".[0].html_url",
+            ],
             capture_output=True,
             text=True,
         )
@@ -269,6 +291,7 @@ def get_pr_url(repo_url, branch):
     except Exception as e:
         print(f"Error finding PR URL: {e}")
         return None
+
 
 # Example usage
 if __name__ == "__main__":
@@ -303,8 +326,8 @@ if __name__ == "__main__":
         open_github_tab(repo_url, matching_id)
     else:
         pr_url = get_pr_url(repo_url, current_branch)
-        if pr_url:
-            # Find if the PR URL is already open in a tab
-            matching_id = find_matching_tab_id(pr_url, urls, ids)
-            # Open or focus the tab with the PR
-            open_github_tab(pr_url, matching_id)
+        # Find if the PR URL is already open in a tab
+        matching_id = find_matching_tab_id(pr_url, urls, ids)
+        print("Matching Tab ID: ", matching_id)
+        # Open or focus the tab with the PR
+        open_github_tab(pr_url, matching_id)
