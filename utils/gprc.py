@@ -80,6 +80,35 @@ def get_default_branch():
         print(f"Error determining default branch: {e}")
         return None
 
+def get_github_origin():
+    """
+    Get the GitHub origin URL of the current Git repository.
+
+    Returns:
+        str: GitHub origin URL or None if not a GitHub repository
+    """
+    try:
+        # Get the origin URL
+        result = subprocess.run(
+            ["git", "remote", "get-url", "origin"],
+            capture_output=True, text=True, check=True
+        )
+
+        origin = result.stdout.strip()
+
+        # Check if the origin is from GitHub
+        if "github.com" in origin:
+            return origin
+        else:
+            print("Error: Repository origin is not on GitHub.")
+            return None
+
+    except subprocess.CalledProcessError as e:
+        print(f"Git error: {e}")
+        return None
+    except Exception as e:
+        print(f"Error determining origin: {e}")
+        return None
 
 # Example usage
 if __name__ == "__main__":
@@ -96,3 +125,6 @@ if __name__ == "__main__":
         print(f"Default branch: {default_branch}")
     else:
         print("Error: Not in a Git repository or couldn't determine default branch.")
+
+    github_origin = get_github_origin()
+    print(f"GitHub Origin: {github_origin}")
