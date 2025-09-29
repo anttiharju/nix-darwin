@@ -113,7 +113,7 @@ def find_github_tab(url):
 def open_in_browser(url, tab_id=None):
     """Open URL in Chrome browser"""
     if tab_id:
-        run(["chrome-cli", "activate", "-t", tab_id])
+        run(["chrome-cli", "activate", "-t", tab_id], get_output=False)
         run(["chrome-cli", "open", url, "-t", tab_id], get_output=False)
     else:
         run(["chrome-cli", "open", url], get_output=False)
