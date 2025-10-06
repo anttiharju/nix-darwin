@@ -43,6 +43,7 @@
       ruff
       pkgs-unstable.prettier
       uv
+      mtr
     ];
   };
   programs = {
