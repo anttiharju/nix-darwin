@@ -40,6 +40,7 @@
       gh
       yq
       yamlfmt
+      ruff
     ];
   };
   programs = {
