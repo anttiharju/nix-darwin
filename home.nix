@@ -67,6 +67,8 @@ in
       gnused
       dive
       dyff
+      editorconfig-checker
+      findutils
     ];
   };
   programs = {
