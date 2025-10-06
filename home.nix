@@ -56,6 +56,7 @@ in
       pkgs-anttiharju.relcheck
       coreutils
       lefthook
+      kubectx
     ];
   };
   programs = {
