@@ -42,6 +42,7 @@
       yamlfmt
       ruff
       pkgs-unstable.prettier
+      uv
     ];
   };
   programs = {
