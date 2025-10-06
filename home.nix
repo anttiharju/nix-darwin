@@ -1,4 +1,10 @@
-{ config, pkgs, pkgs-unstable, ... }: {
+{ config, pkgs, pkgs-unstable, ... }:
+let
+  pkgs-anttiharju = {
+    relcheck = (builtins.getFlake "github:anttiharju/relcheck/00b134c71e1a2c54cdbeb2f271695214d62f8481").packages.${pkgs.system}.default; # v1.8.0
+  };
+in
+{
   home = {
     username = "antti";
     homeDirectory = "/Users/antti";
@@ -47,6 +53,7 @@
       mkdocs
       actionlint
       action-validator
+      pkgs-anttiharju.relcheck
     ];
   };
   programs = {
