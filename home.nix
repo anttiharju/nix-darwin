@@ -62,6 +62,7 @@ in
       imagemagick
       hyperfine
       htop
+      kubectl
     ];
   };
   programs = {
