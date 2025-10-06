@@ -69,6 +69,7 @@ in
       dyff
       editorconfig-checker
       findutils
+      kubernetes-helm
     ];
   };
   programs = {
