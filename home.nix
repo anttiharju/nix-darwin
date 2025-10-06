@@ -63,6 +63,8 @@ in
       hyperfine
       htop
       kubectl
+      gnutar
+      gnused
     ];
   };
   programs = {
