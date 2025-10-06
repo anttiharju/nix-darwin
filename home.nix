@@ -55,6 +55,7 @@ in
       action-validator
       pkgs-anttiharju.relcheck
       coreutils
+      lefthook
     ];
   };
   programs = {
