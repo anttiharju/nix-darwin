@@ -44,6 +44,7 @@
       pkgs-unstable.prettier
       uv
       mtr
+      mkdocs
     ];
   };
   programs = {
