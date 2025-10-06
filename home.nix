@@ -54,6 +54,7 @@ in
       actionlint
       action-validator
       pkgs-anttiharju.relcheck
+      coreutils
     ];
   };
   programs = {
