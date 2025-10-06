@@ -65,6 +65,8 @@ in
       kubectl
       gnutar
       gnused
+      dive
+      dyff
     ];
   };
   programs = {
