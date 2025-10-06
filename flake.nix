@@ -2,6 +2,7 @@
   description = "Antti's MacBook Pro config";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
@@ -10,8 +11,14 @@
     };
     flox.url = "github:flox/flox/v1.7.3";
   };
-  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, flox }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nix-darwin, home-manager, flox }:
   let
+    system = "aarch64-darwin";
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
     # Base configuration shared by all hosts
     mkConfiguration = { hostname, uid }: { pkgs, lib, ... }: {
       nixpkgs.hostPlatform = "aarch64-darwin";
@@ -77,7 +84,10 @@
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        users.antti = ./home.nix;
+        users.antti = import ./home.nix;
+        extraSpecialArgs = {
+          inherit pkgs-unstable;
+        };
       };
     };
   in

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, pkgs-unstable, ... }: {
   home = {
     username = "antti";
     homeDirectory = "/Users/antti";
@@ -41,6 +41,7 @@
       yq
       yamlfmt
       ruff
+      pkgs-unstable.prettier
     ];
   };
   programs = {
