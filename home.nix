@@ -34,10 +34,10 @@
         force = true;
       };
     };
-    packages = [
-      pkgs.tree
-      pkgs.bat
-      pkgs.gh
+    packages = with pkgs; [
+      tree
+      bat
+      gh
     ];
   };
   programs = {
