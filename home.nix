@@ -45,6 +45,8 @@
       uv
       mtr
       mkdocs
+      actionlint
+      action-validator
     ];
   };
   programs = {
