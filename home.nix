@@ -57,6 +57,11 @@ in
       coreutils
       lefthook
       kubectx
+      k9s
+      jq
+      imagemagick
+      hyperfine
+      htop
     ];
   };
   programs = {
