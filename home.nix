@@ -38,6 +38,8 @@
       tree
       bat
       gh
+      yq
+      yamlfmt
     ];
   };
   programs = {
