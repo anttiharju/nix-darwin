@@ -84,15 +84,20 @@ def find_github_tab(url):
         if "github.com" not in line:
             continue
 
-        # Parse line format: [tab_id] url
+        # Parse line format: [window_id:tab_id] url or [tab_id] url
         parts = line.split(None, 1)  # Split on first whitespace
         if len(parts) == 2:
             tab_id_part = parts[0]
             url_part = parts[1]
 
-            # Extract tab ID from [123] format
+            # Extract tab ID from [window_id:tab_id] or [tab_id] format
             if tab_id_part.startswith("[") and tab_id_part.endswith("]"):
-                tab_id = tab_id_part[1:-1]  # Remove brackets
+                id_content = tab_id_part[1:-1]  # Remove brackets
+                # Handle both [window_id:tab_id] and [tab_id] formats
+                if ":" in id_content:
+                    tab_id = id_content.split(":")[1]  # Take the part after colon
+                else:
+                    tab_id = id_content  # Single window format
                 tab_map[url_part] = tab_id
 
     # Try direct match
