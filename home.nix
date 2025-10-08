@@ -44,7 +44,7 @@ in
       tree
       bat
       gh
-      yq
+      yq-go
       yamlfmt
       ruff
       pkgs-unstable.prettier
