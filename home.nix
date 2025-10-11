@@ -7,11 +7,11 @@
 let
   anttiharju = {
     relcheck =
-      (builtins.getFlake "github:anttiharju/relcheck/2b3c003c475d8f68c2c1bbaa996549f2cbbea505")
+      (builtins.getFlake "github:anttiharju/relcheck/752cec4cc8331c678ac6f56ad5179caaf07be3f0")
       .packages.${pkgs.system}.default; # v1.8.0
     vmatch =
-      (builtins.getFlake "github:anttiharju/vmatch/dad10195e833c449599060c5e838956a99457120")
-      .packages.${pkgs.system}.default; # v1.0.10
+      (builtins.getFlake "github:anttiharju/vmatch/7d152bef5ad315b858179f05f60f80c5d109a3be")
+      .packages.${pkgs.system}.default; # v1.0.15
   };
 in
 {
