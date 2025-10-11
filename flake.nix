@@ -31,7 +31,14 @@
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
-      system.defaults.dock.autohide = true;
+      system.defaults.dock = {
+        autohide = true;
+        # Disable all hot corners
+        wvous-tl-corner = 1;
+        wvous-tr-corner = 1;
+        wvous-bl-corner = 1;
+        wvous-br-corner = 1;
+      };
       system.primaryUser = "antti";
       networking.hostName = hostname;
 
