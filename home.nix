@@ -5,7 +5,7 @@
   ...
 }:
 let
-  pkgs-anttiharju = {
+  anttiharju = {
     relcheck =
       (builtins.getFlake "github:anttiharju/relcheck/2b3c003c475d8f68c2c1bbaa996549f2cbbea505")
       .packages.${pkgs.system}.default; # v1.8.0
@@ -77,8 +77,8 @@ in
       mkdocs
       actionlint
       action-validator
-      pkgs-anttiharju.relcheck
-      pkgs-anttiharju.vmatch
+      anttiharju.relcheck
+      anttiharju.vmatch
       coreutils
       lefthook
       kubectx
