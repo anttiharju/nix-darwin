@@ -85,7 +85,7 @@
             brews = [
               "chrome-cli"
             ];
-            # Managing GUI applications through Nix on darwin is akward (not indexed by Spotlight)
+            # Managing GUI applications through Nix on darwin is awkward (not indexed by Spotlight)
             casks = [
               "visual-studio-code"
               "aerospace"
