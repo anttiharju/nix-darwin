@@ -33,7 +33,7 @@ in
         source = ./dotfiles/aerospace.toml;
       };
       ".gitignore" = {
-        source = ./dotfiles/gitignore;
+        source = ./dotfiles/global.gitignore;
       };
       ".gitconfig" = {
         source = ./dotfiles/gitconfig;
