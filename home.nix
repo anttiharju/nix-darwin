@@ -9,6 +9,9 @@ let
     relcheck =
       (builtins.getFlake "github:anttiharju/relcheck/00b134c71e1a2c54cdbeb2f271695214d62f8481")
       .packages.${pkgs.system}.default; # v1.8.0
+    vmatch =
+      (builtins.getFlake "github:anttiharju/vmatch/dad10195e833c449599060c5e838956a99457120")
+      .packages.${pkgs.system}.default; # v1.0.10
   };
 in
 {
@@ -75,6 +78,7 @@ in
       actionlint
       action-validator
       pkgs-anttiharju.relcheck
+      pkgs-anttiharju.vmatch
       coreutils
       lefthook
       kubectx
