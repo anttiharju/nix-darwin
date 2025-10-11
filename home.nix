@@ -7,7 +7,7 @@
 let
   pkgs-anttiharju = {
     relcheck =
-      (builtins.getFlake "github:anttiharju/relcheck/00b134c71e1a2c54cdbeb2f271695214d62f8481")
+      (builtins.getFlake "github:anttiharju/relcheck/2b3c003c475d8f68c2c1bbaa996549f2cbbea505")
       .packages.${pkgs.system}.default; # v1.8.0
     vmatch =
       (builtins.getFlake "github:anttiharju/vmatch/dad10195e833c449599060c5e838956a99457120")
