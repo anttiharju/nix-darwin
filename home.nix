@@ -1,7 +1,14 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 let
   pkgs-anttiharju = {
-    relcheck = (builtins.getFlake "github:anttiharju/relcheck/00b134c71e1a2c54cdbeb2f271695214d62f8481").packages.${pkgs.system}.default; # v1.8.0
+    relcheck =
+      (builtins.getFlake "github:anttiharju/relcheck/00b134c71e1a2c54cdbeb2f271695214d62f8481")
+      .packages.${pkgs.system}.default; # v1.8.0
   };
 in
 {
@@ -10,15 +17,29 @@ in
     homeDirectory = "/Users/antti";
     stateVersion = "25.05";
     file = {
-      "Library/LaunchAgents/com.local.KeyRemapping.plist" = { source = ./dotfiles/com.local.KeyRemapping.plist; };
-      ".config/direnv/direnv.toml" = { source = ./dotfiles/direnv.toml; };
-      ".config/ghostty/config" = { source = ./dotfiles/ghostty.conf; };
-      ".aerospace.toml" = { source = ./dotfiles/aerospace.toml; };
-      ".gitignore" = { source = ./dotfiles/gitignore; };
-      ".gitconfig" = { source = ./dotfiles/gitconfig; };
-      ".hushlogin" = { source = ./dotfiles/hushlogin; };
+      "Library/LaunchAgents/com.local.KeyRemapping.plist" = {
+        source = ./dotfiles/com.local.KeyRemapping.plist;
+      };
+      ".config/direnv/direnv.toml" = {
+        source = ./dotfiles/direnv.toml;
+      };
+      ".config/ghostty/config" = {
+        source = ./dotfiles/ghostty.conf;
+      };
+      ".aerospace.toml" = {
+        source = ./dotfiles/aerospace.toml;
+      };
+      ".gitignore" = {
+        source = ./dotfiles/gitignore;
+      };
+      ".gitconfig" = {
+        source = ./dotfiles/gitconfig;
+      };
+      ".hushlogin" = {
+        source = ./dotfiles/hushlogin;
+      };
       ".local/bin" = {
-        source = pkgs.runCommandNoCC "bin-scripts" {} ''
+        source = pkgs.runCommandNoCC "bin-scripts" { } ''
           mkdir -p $out
           for file in ${./utils}/*; do
             if [ -f "$file" ]; then
