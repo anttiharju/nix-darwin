@@ -70,6 +70,7 @@ in
       editorconfig-checker
       findutils
       kubernetes-helm
+      nixfmt-rfc-style
     ];
   };
   programs = {
