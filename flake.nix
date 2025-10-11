@@ -86,7 +86,7 @@
               "chrome-cli"
             ];
             # Managing GUI applications through Nix on darwin is awkward (not indexed by Spotlight)
-            casks = [
+            casks = map (name: { inherit name; greedy = true; }) [
               "visual-studio-code"
               "google-chrome"
               "aerospace"
