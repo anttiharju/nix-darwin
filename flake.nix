@@ -88,6 +88,7 @@
             # Managing GUI applications through Nix on darwin is awkward (not indexed by Spotlight)
             casks = [
               "visual-studio-code"
+              "google-chrome"
               "aerospace"
               "orbstack"
               "ghostty"
