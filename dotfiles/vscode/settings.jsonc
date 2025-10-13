@@ -17,5 +17,8 @@
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
     "docker.extension.enableComposeLanguageServer": false,
-    "update.showReleaseNotes": false
+    "update.showReleaseNotes": false,
+    "gitlens.codeLens.recentChange.enabled": false,
+    "gitlens.codeLens.authors.enabled": false,
+    "gitlens.codeLens.enabled": false
 }
