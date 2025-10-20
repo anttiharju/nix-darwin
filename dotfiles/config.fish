@@ -2,6 +2,12 @@ if not set -q TMUX; or test "$TERM_PROGRAM" = "vscode"
   exec tmux
 end
 
+# Util for returning to initial directory
+set -gx ANTTIHARJU_OG (pwd)
+function og
+  cd $ANTTIHARJU_OG
+end
+
 # Extend path
 set -gx PATH ~/.local/bin $PATH
 set -gx PATH ~/.vmatch/bin $PATH
