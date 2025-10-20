@@ -26,7 +26,6 @@ alias "cat=bat --plain"
 alias "tree=tree --dirsfirst"
 
 # Abbreviations
-abbr -a 's' 'sudo'
 abbr -a 'ma' 'make'
 abbr -a 'shebang' 'printf "#!/usr/bin/env bash" | pbcopy'
 abbr -a 'prune-branches' 'git branch | grep -v "\*\\|  main\$\\|  master\$" | xargs git branch -D'
