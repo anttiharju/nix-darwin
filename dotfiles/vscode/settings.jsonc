@@ -20,5 +20,8 @@
     "update.showReleaseNotes": false,
     "gitlens.codeLens.recentChange.enabled": false,
     "gitlens.codeLens.authors.enabled": false,
-    "gitlens.codeLens.enabled": false
+    "gitlens.codeLens.enabled": false,
+    "[rust]": {
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    }
 }
