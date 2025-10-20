@@ -119,7 +119,9 @@ def find_github_tab(url):
 def open_in_browser(url, tab_id=None):
     """Open URL in Chrome browser"""
     # If chrome-cli failed earlier, Chrome is not running, use open command
-    if tab_id is None and not run(["chrome-cli", "list"], get_output=False, silent=True):
+    if tab_id is None and not run(
+        ["chrome-cli", "list"], get_output=False, silent=True
+    ):
         run(["open", url], get_output=False)
         return
 
