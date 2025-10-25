@@ -4,7 +4,9 @@
   {
     "key": "cmd+t",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002c" },
+    "args": {
+      "text": "\u0002c"
+    },
     "when": "terminalFocus"
   },
   // close
@@ -12,28 +14,36 @@
   {
     "key": "cmd+w",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002&" },
+    "args": {
+      "text": "\u0002&"
+    },
     "when": "terminalFocus"
   },
   // - pane
   {
     "key": "cmd+w",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002x" },
+    "args": {
+      "text": "\u0002x"
+    },
     "when": "terminalFocus"
   },
   // next window
   {
     "key": "cmd+alt+right",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002n" },
+    "args": {
+      "text": "\u0002n"
+    },
     "when": "terminalFocus"
   },
   // previous window
   {
     "key": "cmd+alt+left",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002p" },
+    "args": {
+      "text": "\u0002p"
+    },
     "when": "terminalFocus"
   },
   // pane navigation
@@ -41,28 +51,36 @@
   {
     "key": "alt+shift+right",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002\u001b[C" },
+    "args": {
+      "text": "\u0002\u001b[C"
+    },
     "when": "terminalFocus"
   },
   // down
   {
     "key": "alt+shift+down",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002\u001b[B" },
+    "args": {
+      "text": "\u0002\u001b[B"
+    },
     "when": "terminalFocus"
   },
   // left
   {
     "key": "alt+shift+left",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002\u001b[D" },
+    "args": {
+      "text": "\u0002\u001b[D"
+    },
     "when": "terminalFocus"
   },
   // - up
   {
     "key": "alt+shift+up",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002\u001b[A" },
+    "args": {
+      "text": "\u0002\u001b[A"
+    },
     "when": "terminalFocus"
   },
   // pane creation
@@ -70,28 +88,36 @@
   {
     "key": "cmd+shift+right",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002%" },
+    "args": {
+      "text": "\u0002%"
+    },
     "when": "terminalFocus"
   },
   // - down
   {
     "key": "cmd+shift+down",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002\"" },
+    "args": {
+      "text": "\u0002\""
+    },
     "when": "terminalFocus"
   },
   // left (right + swap)
   {
     "key": "cmd+shift+left",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002%\u0002{" },
+    "args": {
+      "text": "\u0002%\u0002{"
+    },
     "when": "terminalFocus"
   },
   // up (down + swap)
   {
     "key": "cmd+shift+up",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002\"\u0002{" },
+    "args": {
+      "text": "\u0002\"\u0002{"
+    },
     "when": "terminalFocus"
   },
   // Toggle terminal
@@ -108,7 +134,9 @@
   {
     "key": "cmd+s",
     "command": "workbench.action.terminal.sendSequence",
-    "args": { "text": "\u0002[" },
+    "args": {
+      "text": "\u0002["
+    },
     "when": "terminalFocus"
   }
 ]
