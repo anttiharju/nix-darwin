@@ -27,6 +27,7 @@
   "editor.formatOnSave": true,
   "zig.zls.enabled": "on",
   "shellcheck.customArgs": [
-    "--source-path=SCRIPTDIR"
+    "--source-path=SCRIPTDIR",
+    "--external-sources"
   ]
 }
