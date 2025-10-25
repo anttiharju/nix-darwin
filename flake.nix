@@ -80,6 +80,10 @@
           # Mac App Store and Homebrew
           homebrew = {
             enable = true;
+            onActivation = {
+              autoUpdate = true;
+              upgrade = true;
+            };
             masApps = {
               "Strongbox Pro" = 1481853033; # id is from website url
             };
