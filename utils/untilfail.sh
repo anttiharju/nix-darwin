@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # UNTILFAIL:
 # Run command in loop until it fails
