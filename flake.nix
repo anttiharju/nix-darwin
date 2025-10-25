@@ -3,6 +3,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-anttiharju.url = "github:anttiharju/nixpkgs-anttiharju";
+    nixpkgs-anttiharju.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
@@ -16,6 +18,7 @@
       self,
       nixpkgs,
       nixpkgs-unstable,
+      nixpkgs-anttiharju,
       nix-darwin,
       home-manager,
       flox,
@@ -26,6 +29,7 @@
         inherit system;
         config.allowUnfree = true;
       };
+      pkgs-anttiharju = nixpkgs-anttiharju.packages.${system};
 
       # Base configuration shared by all hosts
       mkConfiguration =
@@ -109,7 +113,7 @@
           useUserPackages = true;
           users.antti = import ./home.nix;
           extraSpecialArgs = {
-            inherit pkgs-unstable;
+            inherit pkgs-unstable pkgs-anttiharju;
           };
         };
       };

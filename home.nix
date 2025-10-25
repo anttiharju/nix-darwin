@@ -2,18 +2,9 @@
   config,
   pkgs,
   pkgs-unstable,
+  pkgs-anttiharju,
   ...
 }:
-let
-  anttiharju = {
-    relcheck =
-      (builtins.getFlake "github:anttiharju/relcheck/752cec4cc8331c678ac6f56ad5179caaf07be3f0")
-      .packages.${pkgs.system}.default; # v1.8.0
-    vmatch =
-      (builtins.getFlake "github:anttiharju/vmatch/8b56182b913d6c8a6a4936bcc98fd39276ecb30f")
-      .packages.${pkgs.system}.default; # v1.0.15
-  };
-in
 {
   home = {
     username = "antti";
@@ -77,8 +68,8 @@ in
       mkdocs
       actionlint
       action-validator
-      anttiharju.relcheck
-      anttiharju.vmatch
+      pkgs-anttiharju.relcheck
+      pkgs-anttiharju.vmatch
       coreutils
       lefthook
       kubectx
