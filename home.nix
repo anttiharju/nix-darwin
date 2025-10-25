@@ -65,7 +65,9 @@
       pkgs-unstable.prettier
       uv
       mtr
-      mkdocs
+      (python313.withPackages (ps: with ps; [
+        mkdocs-material
+      ]))
       actionlint
       action-validator
       pkgs-anttiharju.relcheck
