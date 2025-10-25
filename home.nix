@@ -96,6 +96,7 @@ in
       findutils
       kubernetes-helm
       nixfmt-rfc-style
+      pkgs-unstable.zig
     ];
   };
   programs = {
