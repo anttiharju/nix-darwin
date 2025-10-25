@@ -90,6 +90,7 @@
       kubernetes-helm
       nixfmt-rfc-style
       pkgs-unstable.zig
+      rubocop
     ];
   };
   programs = {
