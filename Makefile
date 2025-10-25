@@ -2,6 +2,9 @@ default:
 	sudo darwin-rebuild switch
 	tmux source-file /etc/nix-darwin/dotfiles/tmux.conf
 
+refresh:
+	nix flake update
+
 bootstrap:
 	sudo nix run nix-darwin/nix-darwin-25.05#darwin-rebuild -- switch
 
