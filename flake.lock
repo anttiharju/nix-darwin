@@ -231,11 +231,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761423421,
-        "narHash": "sha256-4Jf/jqtYwQgjeB4VBmxHT4ZzxFXXUUopVrVLBnyXdvc=",
+        "lastModified": 1761424975,
+        "narHash": "sha256-7T7d9IQFhgYDyEiutkQ0NLeOvJPdDf0gP+wO6qssdDo=",
         "owner": "anttiharju",
         "repo": "nixpkgs-anttiharju",
-        "rev": "27c4cf09ac61abe23582570e1ce0af05aa13f4a3",
+        "rev": "359fd172223134cbb6c2a43ca84b535292c9a8d3",
         "type": "github"
       },
       "original": {
