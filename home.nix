@@ -92,6 +92,7 @@
       pkgs-unstable.zig
       rubocop
       nix-prefetch-github
+      envsubst
     ];
   };
   programs = {
