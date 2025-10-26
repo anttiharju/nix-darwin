@@ -91,6 +91,7 @@
       nixfmt-rfc-style
       pkgs-unstable.zig
       rubocop
+      nix-prefetch-github
     ];
   };
   programs = {
