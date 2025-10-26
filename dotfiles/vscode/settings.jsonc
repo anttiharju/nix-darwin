@@ -25,9 +25,5 @@
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
   "editor.formatOnSave": true,
-  "zig.zls.enabled": "on",
-  "shellcheck.customArgs": [
-    "--source-path=SCRIPTDIR",
-    "--external-sources"
-  ]
+  "zig.zls.enabled": "on"
 }
