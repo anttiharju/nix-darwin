@@ -95,6 +95,7 @@
       rubocop
       nix-prefetch-github
       envsubst
+      ripgrep
     ];
   };
   programs = {
