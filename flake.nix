@@ -118,7 +118,7 @@
           users.antti = import ./home.nix;
           extraSpecialArgs = {
             inherit pkgs-unstable;
-            inherit nur-pkgs;
+            anttiharju = nur-pkgs;
           };
         };
       };
