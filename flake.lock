@@ -224,26 +224,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-anttiharju": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1761558417,
-        "narHash": "sha256-kcJBtP92oojlF/pw+6q4baeQyp/1TvPmkQn5FGbpT88=",
-        "owner": "anttiharju",
-        "repo": "nixpkgs-anttiharju",
-        "rev": "2b4ab25cf05dce86495cc882dcf25861073efb5b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "anttiharju",
-        "repo": "nixpkgs-anttiharju",
-        "type": "github"
-      }
-    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1761349956,
@@ -276,6 +256,26 @@
         "type": "github"
       }
     },
+    "nur-packages": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1761561557,
+        "narHash": "sha256-TUeHuDtqyMJJ9rM0GR6WkWPkO7H+d8fPnQ15j+Aw3xM=",
+        "owner": "anttiharju",
+        "repo": "nur-packages",
+        "rev": "56d0bd0232cbd020a77dbe6ef3406dccea7e0846",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anttiharju",
+        "repo": "nur-packages",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -305,8 +305,8 @@
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-anttiharju": "nixpkgs-anttiharju",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nur-packages": "nur-packages"
       }
     },
     "rust-analyzer-src": {

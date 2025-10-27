@@ -2,7 +2,7 @@
   config,
   pkgs,
   pkgs-unstable,
-  pkgs-anttiharju,
+  nur-pkgs,
   ...
 }:
 {
@@ -70,8 +70,8 @@
       ]))
       actionlint
       action-validator
-      pkgs-anttiharju.relcheck
-      pkgs-anttiharju.vmatch
+#      nur-pkgs.relcheck
+      nur-pkgs.vmatch
       coreutils
       lefthook
       kubectx
