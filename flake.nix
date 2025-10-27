@@ -40,9 +40,11 @@
           nix.settings.experimental-features = "nix-command flakes";
           nix.settings.substituters = [
             "https://cache.flox.dev"
+            "https://anttiharju.cachix.org"
           ];
           nix.settings.trusted-public-keys = [
             "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
+            "anttiharju.cachix.org-1:1/w1vNdGsG6EynEoWhjJLJ2rxqde2BP+wkKM+YdOxMQ="
           ];
 
           # Set Git commit hash for darwin-version.
