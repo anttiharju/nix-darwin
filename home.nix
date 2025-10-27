@@ -70,7 +70,7 @@
       ]))
       actionlint
       action-validator
-#      nur-pkgs.relcheck
+      nur-pkgs.relcheck
       nur-pkgs.vmatch
       coreutils
       lefthook
