@@ -60,7 +60,6 @@
       bat
       gh
       yq-go
-      yamlfmt
       ruff
       pkgs-unstable.prettier
       uv
@@ -80,20 +79,15 @@
       k9s
       jq
       imagemagick
-      hyperfine
-      htop
       kubectl
       gnutar
       gnused
       dive
-      dyff
       editorconfig-checker
       findutils
       kubernetes-helm
       nixfmt-rfc-style
-      pkgs-unstable.zig
       rubocop
-      nix-prefetch-github
       envsubst
       ripgrep
     ];
