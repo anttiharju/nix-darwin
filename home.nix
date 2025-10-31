@@ -72,7 +72,6 @@
       actionlint
       action-validator
       anttiharju.relcheck
-      anttiharju.vmatch
       coreutils
       lefthook
       kubectx
