@@ -89,6 +89,7 @@
       rubocop
       envsubst
       ripgrep
+      shellcheck
     ];
   };
   programs = {
