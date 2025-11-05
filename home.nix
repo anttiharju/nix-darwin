@@ -90,6 +90,7 @@
       envsubst
       ripgrep
       shellcheck
+      act
     ];
   };
   programs = {
