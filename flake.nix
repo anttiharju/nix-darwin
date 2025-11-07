@@ -58,6 +58,11 @@
             wvous-bl-corner = 1;
             wvous-br-corner = 1;
           };
+          system.defaults.CustomUserPreferences = {
+            NSGlobalDomain = {
+              AppleKeyboardUIMode = 2;
+            };
+          };
           system.primaryUser = "antti";
           networking.hostName = hostname;
 
