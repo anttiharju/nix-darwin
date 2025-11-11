@@ -60,8 +60,8 @@
       yq-go
       envsubst
       ruff
-      prettier
       uv
+      prettier
       mtr
       (python313.withPackages (
         ps: with ps; [
