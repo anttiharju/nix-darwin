@@ -84,7 +84,6 @@ in
       gnutar
       gnugrep
       findutils
-      k9s
       kubectl
       kubectx
       kubernetes-helm
@@ -130,6 +129,9 @@ in
       settings = {};
     };
     ripgrep = {
+      enable = true;
+    };
+    k9s = {
       enable = true;
     };
     direnv = {
