@@ -3,8 +3,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nur-packages.url = "github:anttiharju/nur-packages";
-    nur-packages.inputs.nixpkgs.follows = "nixpkgs";
+    anttiharju.url = "github:anttiharju/nur-packages";
+    anttiharju.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
@@ -18,7 +18,7 @@
       self,
       nixpkgs,
       nixpkgs-unstable,
-      nur-packages,
+      anttiharju,
       nix-darwin,
       home-manager,
       flox,
@@ -29,19 +29,6 @@
         inherit system;
       };
 
-      # Create a merged package set with unstable as fallback
-      pkgs-with-fallback = import nixpkgs {
-        inherit system;
-        overlays = [
-          (final: prev:
-            # For any attribute that doesn't exist in stable, use unstable
-            pkgs-unstable // prev
-          )
-        ];
-      };
-
-      nur-pkgs = import nur-packages { pkgs = nixpkgs.legacyPackages.${system}; };
-
       # Base configuration shared by all hosts
       mkConfiguration =
         { hostname, uid }:
@@ -49,6 +36,7 @@
         {
           nixpkgs.hostPlatform = "aarch64-darwin";
           nixpkgs.overlays = [
+            anttiharju.overlays.default
             (final: prev:
               # For any attribute that doesn't exist in stable, use unstable
               pkgs-unstable // prev
@@ -140,9 +128,6 @@
           useGlobalPkgs = true;
           useUserPackages = true;
           users.antti = import ./home.nix;
-          extraSpecialArgs = {
-            anttiharju = nur-pkgs;
-          };
         };
       };
     in

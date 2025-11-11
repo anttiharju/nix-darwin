@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  anttiharju,
   ...
 }:
 {
@@ -70,7 +69,7 @@
       ))
       actionlint
       action-validator
-      anttiharju.relcheck
+      relcheck
       coreutils
       lefthook
       kubectx
