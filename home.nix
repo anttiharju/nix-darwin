@@ -66,7 +66,6 @@ in
       tree
       gzip
       xz
-      bat
       jq
       yq-go
       envsubst
@@ -118,6 +117,9 @@ in
     fish = {
       enable = true;
       interactiveShellInit = (builtins.readFile ./dotfiles/config.fish);
+    };
+    bat = {
+      enable = true;
     };
     direnv = {
       enable = true;
