@@ -68,7 +68,6 @@ in
       xz
       yq-go
       envsubst
-      gh
       ruff
       uv
       mkdocs_material
@@ -121,6 +120,9 @@ in
       enable = true;
     };
     jq = {
+      enable = true;
+    };
+    gh = {
       enable = true;
     };
     direnv = {
