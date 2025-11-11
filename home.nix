@@ -80,6 +80,7 @@ in
       editorconfig-checker
       rubocop
       shellcheck
+      gawkInteractive
       gnused
       gnutar
       gnugrep
