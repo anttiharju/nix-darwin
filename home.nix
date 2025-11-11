@@ -79,6 +79,7 @@
       kubectl
       gnutar
       gnused
+      gnugrep
       dive
       editorconfig-checker
       findutils
@@ -88,7 +89,6 @@
       envsubst
       ripgrep
       shellcheck
-      gnugrep
     ];
   };
   programs = {
