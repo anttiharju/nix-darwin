@@ -83,7 +83,6 @@ in
       gnused
       gnutar
       gnugrep
-      ripgrep
       findutils
       k9s
       kubectl
@@ -129,6 +128,9 @@ in
     ruff = {
       enable = true;
       settings = {};
+    };
+    ripgrep = {
+      enable = true;
     };
     direnv = {
       enable = true;
