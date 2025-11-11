@@ -60,13 +60,13 @@ in
     };
     packages = with pkgs; [
       uutils-coreutils-noprefix
-      jq
       imagemagick
       tree
       bat
-      gh
+      jq
       yq-go
       envsubst
+      gh
       ruff
       uv
       mkdocs_material
