@@ -69,7 +69,6 @@ in
       yq-go
       envsubst
       ruff
-      uv
       mkdocs_material
       mtr
       dig
@@ -123,6 +122,9 @@ in
       enable = true;
     };
     gh = {
+      enable = true;
+    };
+    uv = {
       enable = true;
     };
     direnv = {
