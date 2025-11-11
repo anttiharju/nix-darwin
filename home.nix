@@ -63,6 +63,7 @@
       uv
       prettier
       mtr
+      dig
       (python313.withPackages (
         ps: with ps; [
           mkdocs-material
