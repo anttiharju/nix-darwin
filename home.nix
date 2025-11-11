@@ -59,7 +59,7 @@ in
       };
     };
     packages = with pkgs; [
-      coreutils
+      uutils-coreutils-noprefix
       jq
       imagemagick
       tree
