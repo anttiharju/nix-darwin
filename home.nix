@@ -59,6 +59,9 @@ in
       };
     };
     packages = with pkgs; [
+      coreutils
+      jq
+      imagemagick
       tree
       bat
       gh
@@ -74,23 +77,20 @@ in
       actionlint
       action-validator
       relcheck
-      coreutils
-      kubectx
-      k9s
-      jq
-      imagemagick
-      kubectl
+      editorconfig-checker
+      rubocop
+      shellcheck
       gnutar
       gnused
       gnugrep
       ripgrep
-      dive
-      editorconfig-checker
       findutils
+      k9s
+      kubectl
+      kubectx
       kubernetes-helm
+      dive
       nixfmt-rfc-style
-      rubocop
-      shellcheck
     ];
   };
   programs = {
