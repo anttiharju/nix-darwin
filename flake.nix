@@ -27,7 +27,6 @@
       system = "aarch64-darwin";
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
-        config.allowUnfree = true;
       };
       nur-pkgs = import nur-packages { pkgs = nixpkgs.legacyPackages.${system}; };
 
@@ -115,12 +114,6 @@
                   "ghostty"
                 ];
           };
-
-          nixpkgs.config.allowUnfreePredicate =
-            pkg:
-            builtins.elem (lib.getName pkg) [
-              "vscode"
-            ];
         };
 
       # Common home-manager module
