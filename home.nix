@@ -88,6 +88,7 @@
       envsubst
       ripgrep
       shellcheck
+      gnugrep
     ];
   };
   programs = {
