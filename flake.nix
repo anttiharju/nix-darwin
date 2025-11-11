@@ -37,7 +37,8 @@
           nixpkgs.hostPlatform = "aarch64-darwin";
           nixpkgs.overlays = [
             anttiharju.overlays.default
-            (final: prev:
+            (
+              final: prev:
               # For any attribute that doesn't exist in stable, use unstable
               pkgs-unstable // prev
             )
