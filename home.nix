@@ -4,9 +4,11 @@
   ...
 }:
 let
-  mkdocs_material = pkgs.python313.withPackages (ps: with ps; [
-    mkdocs-material
-  ]);
+  mkdocs_material = pkgs.python313.withPackages (
+    ps: with ps; [
+      mkdocs-material
+    ]
+  );
 in
 {
   home = {
@@ -126,7 +128,7 @@ in
     };
     ruff = {
       enable = true;
-      settings = {};
+      settings = { };
     };
     ripgrep = {
       enable = true;
