@@ -58,6 +58,7 @@
       bat
       gh
       yq-go
+      envsubst
       ruff
       prettier
       uv
@@ -86,7 +87,6 @@
       kubernetes-helm
       nixfmt-rfc-style
       rubocop
-      envsubst
       ripgrep
       shellcheck
     ];
