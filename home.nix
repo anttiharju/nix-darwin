@@ -67,14 +67,14 @@ in
       ruff
       uv
       mkdocs_material
-      prettier
       mtr
       dig
+      lefthook
+      prettier
       actionlint
       action-validator
       relcheck
       coreutils
-      lefthook
       kubectx
       k9s
       jq
