@@ -81,13 +81,13 @@
       gnutar
       gnused
       gnugrep
+      ripgrep
       dive
       editorconfig-checker
       findutils
       kubernetes-helm
       nixfmt-rfc-style
       rubocop
-      ripgrep
       shellcheck
     ];
   };
