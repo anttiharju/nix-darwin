@@ -3,6 +3,11 @@
   pkgs,
   ...
 }:
+let
+  pythonWithMkdocs = pkgs.python313.withPackages (ps: with ps; [
+    mkdocs-material
+  ]);
+in
 {
   home = {
     username = "antti";
@@ -64,11 +69,7 @@
       prettier
       mtr
       dig
-      (python313.withPackages (
-        ps: with ps; [
-          mkdocs-material
-        ]
-      ))
+      pythonWithMkdocs
       actionlint
       action-validator
       relcheck
