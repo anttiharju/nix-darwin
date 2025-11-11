@@ -66,10 +66,10 @@ in
       envsubst
       ruff
       uv
+      mkdocs_material
       prettier
       mtr
       dig
-      mkdocs_material
       actionlint
       action-validator
       relcheck
