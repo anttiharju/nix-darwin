@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  pkgs-unstable,
   anttiharju,
   ...
 }:
@@ -61,7 +60,7 @@
       gh
       yq-go
       ruff
-      pkgs-unstable.prettier
+      prettier
       uv
       mtr
       (python313.withPackages (

@@ -28,6 +28,18 @@
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
       };
+
+      # Create a merged package set with unstable as fallback
+      pkgs-with-fallback = import nixpkgs {
+        inherit system;
+        overlays = [
+          (final: prev:
+            # For any attribute that doesn't exist in stable, use unstable
+            pkgs-unstable // prev
+          )
+        ];
+      };
+
       nur-pkgs = import nur-packages { pkgs = nixpkgs.legacyPackages.${system}; };
 
       # Base configuration shared by all hosts
@@ -36,6 +48,12 @@
         { pkgs, lib, ... }:
         {
           nixpkgs.hostPlatform = "aarch64-darwin";
+          nixpkgs.overlays = [
+            (final: prev:
+              # For any attribute that doesn't exist in stable, use unstable
+              pkgs-unstable // prev
+            )
+          ];
           nix.settings.experimental-features = "nix-command flakes";
           nix.settings.substituters = [
             "https://cache.flox.dev"
@@ -123,7 +141,6 @@
           useUserPackages = true;
           users.antti = import ./home.nix;
           extraSpecialArgs = {
-            inherit pkgs-unstable;
             anttiharju = nur-pkgs;
           };
         };
