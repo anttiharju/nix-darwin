@@ -80,8 +80,8 @@ in
       editorconfig-checker
       rubocop
       shellcheck
-      gnutar
       gnused
+      gnutar
       gnugrep
       ripgrep
       findutils
