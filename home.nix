@@ -4,7 +4,7 @@
   ...
 }:
 let
-  pythonWithMkdocs = pkgs.python313.withPackages (ps: with ps; [
+  mkdocs_material = pkgs.python313.withPackages (ps: with ps; [
     mkdocs-material
   ]);
 in
@@ -69,7 +69,7 @@ in
       prettier
       mtr
       dig
-      pythonWithMkdocs
+      mkdocs_material
       actionlint
       action-validator
       relcheck
