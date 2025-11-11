@@ -68,7 +68,6 @@ in
       xz
       yq-go
       envsubst
-      ruff
       mkdocs_material
       mtr
       dig
@@ -126,6 +125,10 @@ in
     };
     uv = {
       enable = true;
+    };
+    ruff = {
+      enable = true;
+      settings = {};
     };
     direnv = {
       enable = true;
