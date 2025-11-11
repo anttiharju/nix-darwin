@@ -61,7 +61,11 @@ in
     packages = with pkgs; [
       uutils-coreutils-noprefix
       imagemagick
+      perl
+      curl
       tree
+      gzip
+      xz
       bat
       jq
       yq-go
