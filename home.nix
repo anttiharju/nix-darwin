@@ -78,6 +78,7 @@ in
       actionlint
       action-validator
       relcheck
+      vmatch
       editorconfig-checker
       rubocop
       shellcheck
