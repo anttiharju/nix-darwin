@@ -10,6 +10,7 @@ end
 
 # Extend path
 set -gx PATH ~/.local/bin $PATH
+set -gx PATH ~/.vmatch/bin $PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # This is slow hence the if condition
