@@ -25,10 +25,13 @@ set fish_greeting
 alias "cat=bat --plain"
 alias "tree=tree --dirsfirst"
 
-# Abbreviations
+# Misc. abbreviations
 abbr -a 'ma' 'make'
 abbr -a 'shebang' 'printf "#!/usr/bin/env bash" | pbcopy'
 abbr -a 'prune-branches' 'git branch | grep -v "\*\\|  main\$\\|  master\$" | xargs git branch -D'
+abbr -a 'cr' 'cargo run'
+
+# Git abbreviations
 abbr -a 'gd' 'git diff'
 abbr -a 'gds' 'git diff --staged'
 abbr -a 'gra' 'git reset --hard && git clean -df && git clean -dfx -e "*/.flox/**" -e "collections/**" -e "automation/bin/**" -e "plugins/**"'
@@ -48,7 +51,6 @@ abbr -a 'gpf' 'git push --force'
 abbr -a 'gps' 'git push'
 abbr -a 'gt' 'git tag --sort=-creatordate'
 abbr -a 'allow-push' 'git config --local "branch.$(git branch --show-current).pushRemote" origin'
-abbr -a 'cr' 'cargo run'
 
 function up-or-search -d "Depending on cursor position and current mode, either search backward or move up one line"
   # If we are already in search mode, continue
