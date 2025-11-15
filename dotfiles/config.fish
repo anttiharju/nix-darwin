@@ -70,8 +70,8 @@ function up-or-search -d "Depending on cursor position and current mode, either 
 
   switch $lineno
     case 1
-      commandline -f history-search-backward
       history merge
+      commandline -f history-search-backward
 
     case '*'
       commandline -f up-line
