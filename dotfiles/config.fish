@@ -34,7 +34,7 @@ abbr -a 'cr' 'cargo run'
 # Git abbreviations
 abbr -a 'gd' 'git diff'
 abbr -a 'gds' 'git diff --staged'
-abbr -a 'gra' 'git reset --hard && git clean -df && git clean -dfx -e "*/.flox/**" -e "collections/**" -e "automation/bin/**" -e "plugins/**"'
+abbr -a 'gra' 'git reset --hard && git clean -dfx'
 abbr -a 'gr' 'git reset --hard && git clean -df'
 abbr -a 'gs' 'git status'
 abbr -a 'gaa' 'git add --all'
