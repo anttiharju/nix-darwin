@@ -50,7 +50,7 @@ abbr -a 'gs-' 'git switch -'
 abbr -a 'gpf' 'git push --force'
 abbr -a 'gps' 'git push'
 abbr -a 'gt' 'git tag --sort=-creatordate'
-abbr -a 'allow-push' 'git config --local "branch.$(git branch --show-current).pushRemote" origin'
+abbr -a 'allow-push' 'git config --local "branch.$(basename (git symbolic-ref refs/remotes/origin/HEAD)).pushRemote" origin'
 
 function up-or-search -d "Depending on cursor position and current mode, either search backward or move up one line"
   # If we are already in search mode, continue
