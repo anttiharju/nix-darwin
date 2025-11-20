@@ -4,14 +4,6 @@ set -eu
 # Git PR:
 # open the existing or a new PR for current branch. On default branch opens the repo.
 
-# Check hostname to determine which browser logic to use
-hostname=$(hostname)
-if [ "$hostname" = "harju-work" ]; then
-    gprc
-    exit $?
-fi
-
-
 # Determine default branch.
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     default_branch=$(git rev-parse --abbrev-ref origin/HEAD)
